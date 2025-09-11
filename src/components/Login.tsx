@@ -44,6 +44,19 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     setLoading(true);
     setError('');
 
+    // Verificar se o email existe nos purchases (webhooks recebidos)
+    const { data: existingPurchase } = await supabase
+      .from('purchases')
+      .select('customer_email')
+      .eq('customer_email', email)
+      .limit(1);
+
+    if (!existingPurchase || existingPurchase.length === 0) {
+      setError('Utilize o mesmo email que foi realizada a compra. Esse email não consta no banco de dados.');
+      setLoading(false);
+      return;
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -57,7 +70,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     if (error) {
       setError(error.message);
     } else {
-      setError('Conta criada! Faça login para continuar.');
+      setError('Conta criada com sucesso! Faça login para continuar.');
       setIsSignUp(false);
     }
     setLoading(false);

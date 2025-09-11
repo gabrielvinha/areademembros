@@ -132,6 +132,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#0B0B0F] text-white">
       <Header />
+      <Header user={user} />
       <HeroSection onStartClick={scrollToModules} />
       <ModulesSection unlockedModules={unlockedModules} onUnlock={unlockModule} />
       <CommunitySection />
