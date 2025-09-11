@@ -28,6 +28,10 @@ function App() {
   const [prosperityUnlocked, setProsperityUnlocked] = useState(false);
   const [user, setUser] = useState<any>(null);
 
+  const handleUserUpdate = (updatedUser: any) => {
+    setUser(updatedUser);
+  };
+
   useEffect(() => {
     // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -131,8 +135,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0B0B0F] text-white">
-      <Header />
-      <Header user={user} />
+      <Header user={user} onUserUpdate={handleUserUpdate} />
       <HeroSection onStartClick={scrollToModules} />
       <ModulesSection unlockedModules={unlockedModules} onUnlock={unlockModule} />
       <CommunitySection />
