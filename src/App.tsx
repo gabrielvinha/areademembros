@@ -1,0 +1,149 @@
+import React, { useState, useEffect } from 'react';
+import { supabase } from './lib/supabase';
+import Login from './components/Login';
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import ModulesSection from './components/ModulesSection';
+import CommunitySection from './components/CommunitySection';
+import BonusSection from './components/BonusSection';
+import MaterialsSection from './components/MaterialsSection';
+import MentorshipSection from './components/MentorshipSection';
+import ProsperitySection from './components/ProsperitySection';
+
+function App() {
+  const removeFloating = () => {
+    document.querySelectorAll('[style*="position: fixed"][style*="bottom: 1rem"][style*="right: 1rem"][style*="z-index: 2147483647"]').forEach(el => el.remove());
+  };
+
+  // executa já no load
+  removeFloating();
+
+  // observa mudanças no DOM
+  const observer = new MutationObserver(removeFloating);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [unlockedModules, setUnlockedModules] = useState(new Set(['module1']));
+  const [prosperityUnlocked, setProsperityUnlocked] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    // Check initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setIsAuthenticated(true);
+        setUser(session.user);
+        loadUserModules(session.user.id);
+      }
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (session) {
+          setIsAuthenticated(true);
+          setUser(session.user);
+          loadUserModules(session.user.id);
+        } else {
+          setIsAuthenticated(false);
+          setUser(null);
+          setUnlockedModules(new Set(['module1']));
+          setProsperityUnlocked(false);
+        }
+        setLoading(false);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const loadUserModules = async (userId: string) => {
+    const { data: modules } = await supabase
+      .from('user_modules')
+      .select('module_id')
+      .eq('user_id', userId);
+
+    if (modules) {
+      const moduleIds = modules.map(m => m.module_id);
+      setUnlockedModules(new Set(['module1', ...moduleIds]));
+      setProsperityUnlocked(moduleIds.includes('prosperity'));
+    }
+  };
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const unlockModule = async (moduleId: string) => {
+    if (user) {
+      const { error } = await supabase
+        .from('user_modules')
+        .upsert({
+          user_id: user.id,
+          module_id: moduleId,
+        }, {
+          onConflict: 'user_id,module_id'
+        });
+
+      if (!error) {
+        const newUnlocked = new Set(unlockedModules);
+        newUnlocked.add(moduleId);
+        setUnlockedModules(newUnlocked);
+      }
+    }
+  };
+
+  const unlockProsperity = async () => {
+    if (user) {
+      const { error } = await supabase
+        .from('user_modules')
+        .upsert({
+          user_id: user.id,
+          module_id: 'prosperity',
+        }, {
+          onConflict: 'user_id,module_id'
+        });
+
+      if (!error) {
+        setProsperityUnlocked(true);
+      }
+    }
+  };
+
+  const scrollToModules = () => {
+    const modulesSection = document.getElementById('modules-section');
+    modulesSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center">
+        <div className="text-white text-xl">Carregando...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-[#0B0B0F] text-white">
+      <Header />
+      <HeroSection onStartClick={scrollToModules} />
+      <ModulesSection unlockedModules={unlockedModules} onUnlock={unlockModule} />
+      <CommunitySection />
+      <BonusSection />
+      <MaterialsSection />
+      <MentorshipSection />
+      <ProsperitySection 
+        isUnlocked={prosperityUnlocked} 
+        onUnlock={unlockProsperity} 
+      />
+    </div>
+  );
+}
+
+export default App;
