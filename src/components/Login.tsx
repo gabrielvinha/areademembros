@@ -86,18 +86,12 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Overlay escuro para melhor legibilidade */}
+      <div className="absolute inset-0 bg-black/60" />
+      
       <div className="bg-black/40 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md border border-white/10">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Frequência da Alma
-          </h1>
-          <div className="mb-4">
-            <span className="text-sm text-gray-300">por </span>
-            <span className="text-lg font-semibold bg-gradient-to-r from-[#FFD166] via-orange-400 to-red-400 bg-clip-text text-transparent animate-pulse">
-              Andressa Campos
-            </span>
-          </div>
+          <h1 className="text-3xl font-bold text-white mb-2">Frequência da Alma</h1>
           <p className="text-gray-400">
             {isSignUp ? 'Criar Conta' : 'Área de Membros'}
           </p>
