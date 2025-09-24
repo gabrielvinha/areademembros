@@ -6,7 +6,7 @@ interface LoginProps {
   onLogin: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC<LoginProps> = ({ onLogin }) => { 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -77,21 +77,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center p-4 relative"
-      style={{
-        backgroundImage: 'url(/login-background.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      {/* Overlay escuro para melhor legibilidade */}
-      <div className="absolute inset-0 bg-black/60" />
-      
+    <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center p-4">
       <div className="bg-black/40 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md border border-white/10">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Frequência da Alma by: Andressa Campos</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Frequência da Alma</h1>
           <p className="text-gray-400">
             {isSignUp ? 'Criar Conta' : 'Área de Membros'}
           </p>
@@ -158,6 +147,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </button>
         </div>
 
+        <div className="mt-8 p-4 bg-white/5 rounded-lg border border-white/10">
+          <p className="text-sm text-gray-400 text-center">
+            <strong>Para teste:</strong><br />
+            E-mail: admin@teste.com<br />
+            Senha: admin123
+          </p>
+        </div>
       </div>
     </div>
   );
