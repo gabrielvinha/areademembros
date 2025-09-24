@@ -44,33 +44,27 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
   const lessons = [
     {
       id: 'lesson1',
-      title: 'Aula 1: Introdução',
+      title: 'Aula 1: Onde começa a frequência da Alma',
       image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
-      videoId: 'dQw4w9WgXcQ'
+      videoId: 'Pix9tqIw0_k'
     },
     {
       id: 'lesson2',
-      title: 'Aula 2: Conceitos Base',
+      title: 'Aula 2: Como o corpo fala antes da mente',
       image: 'https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
-      videoId: 'dQw4w9WgXcQ'
+      videoId: 'Eq52OT_ocmY'
     },
     {
       id: 'lesson3',
-      title: 'Aula 3: Prática',
+      title: 'Aula 3: O Coração como Criador da Realidade',
       image: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
-      videoId: 'dQw4w9WgXcQ'
+      videoId: 'oi1Fk70QCgA'
     },
     {
       id: 'lesson4',
-      title: 'Aula 4: Aprofundamento',
+      title: 'Aula 4: A Revelação do Código Oculto do Coração',
       image: 'https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
-      videoId: 'dQw4w9WgXcQ'
-    },
-    {
-      id: 'lesson5',
-      title: 'Aula 5: Integração',
-      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
-      videoId: 'dQw4w9WgXcQ'
+      videoId: '8OiJKAoMjJI'
     }
   ];
 
