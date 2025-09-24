@@ -77,10 +77,27 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center p-4">
+    <div 
+      className="min-h-screen flex items-center justify-center p-4 relative"
+      style={{
+        backgroundImage: 'url(/login-background.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
       <div className="bg-black/40 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md border border-white/10">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Frequência da Alma</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">
+            Frequência da Alma
+          </h1>
+          <div className="mb-4">
+            <span className="text-sm text-gray-300">por </span>
+            <span className="text-lg font-semibold bg-gradient-to-r from-[#FFD166] via-orange-400 to-red-400 bg-clip-text text-transparent animate-pulse">
+              Andressa Campos
+            </span>
+          </div>
           <p className="text-gray-400">
             {isSignUp ? 'Criar Conta' : 'Área de Membros'}
           </p>
