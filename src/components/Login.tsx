@@ -91,7 +91,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       
       <div className="bg-black/40 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md border border-white/10">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Frequência da Alma</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Frequência da Alma by: Andressa Campos</h1>
           <p className="text-gray-400">
             {isSignUp ? 'Criar Conta' : 'Área de Membros'}
           </p>
