@@ -141,11 +141,13 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       {/* Modal de Vídeo */}
       {selectedLesson && (
         <Modal onClose={() => setSelectedLesson(null)}>
-          <div className="p-6">
+          <div className="p-8">
             <h3 className="text-xl font-bold text-white mb-4">
               {lessons.find(l => l.id === selectedLesson)?.title}
             </h3>
-            <VideoPlayer videoId={lessons.find(l => l.id === selectedLesson)?.videoId || ''} />
+            <div className="mb-6">
+              <VideoPlayer videoId={lessons.find(l => l.id === selectedLesson)?.videoId || ''} />
+            </div>
             
             <div className="flex gap-4 mt-6">
               <a
