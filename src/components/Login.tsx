@@ -6,7 +6,7 @@ interface LoginProps {
   onLogin: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => { 
+const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -147,13 +147,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </button>
         </div>
 
-        <div className="mt-8 p-4 bg-white/5 rounded-lg border border-white/10">
-          <p className="text-sm text-gray-400 text-center">
-            <strong>Para teste:</strong><br />
-            E-mail: admin@teste.com<br />
-            Senha: admin123
-          </p>
-        </div>
       </div>
     </div>
   );
