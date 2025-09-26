@@ -159,28 +159,6 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
           })}
         </div>
 
-        <div className="text-center">
-          <button
-            className="w-full max-w-xs sm:max-w-sm h-auto py-3 sm:py-4 px-4 sm:px-6 bg-[linear-gradient(173deg,rgba(17,24,39,0.5)_0%,rgba(55,65,81,0.8)_100%)] border border-gray-800 shadow-[0px_0px_20px_#6b72801a] rounded-xl hover:opacity-90 transition-opacity mx-auto flex items-center justify-center"
-            onClick={() => window.open('https://www.checkoutupsell.com', '_blank')}
-          >
-            <span className="font-bold text-white text-xs sm:text-sm md:text-base tracking-[0.40px] leading-5 sm:leading-6 mr-2">
-              QUERO OS BÔNUS
-            </span>
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-white" />
-          </button>
-        </div>
-
-        {/* Informação sobre o sistema de desbloqueio */}
-        <div className="mt-8 text-center">
-          <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 max-w-2xl mx-auto border border-white/20">
-            <h3 className="text-lg font-bold text-white mb-2">🎁 Sistema de Recompensas</h3>
-            <p className="text-gray-300 text-sm">
-              Os bônus são liberados automaticamente conforme você avança em sua jornada. 
-              Cada conteúdo é desbloqueado em momentos estratégicos para maximizar seu desenvolvimento.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
