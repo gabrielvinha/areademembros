@@ -11,7 +11,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
   const bannerImages = [
     {
       id: 'bonus1',
-      src: 'https://i.postimg.cc/KRK8kc8g/Banner-Detox-1.png',
+      src: 'https://i.postimg.cc/VLgrhdy4/Banner-Detox-1.png',
       alt: 'Bônus 1: Detox da Escassez',
       title: 'Bônus 1: Detox da Escassez',
       url: 'https://www.miniatura1.com',
@@ -19,7 +19,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus2',
-      src: 'https://i.postimg.cc/67hWJyYF/Banner-Prosperidadee-2.png',
+      src: 'https://i.postimg.cc/JhfGXXJ7/Banner-Prosperidadee-2.png',
       alt: 'Bônus 2: Prosperidade Silenciosa',
       title: 'Bônus 2: Prosperidade Silenciosa',
       url: 'https://www.miniatura2.com',
@@ -27,7 +27,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus3',
-      src: 'https://i.postimg.cc/TKg20kmd/Banner-Escrit-rio-3.png',
+      src: 'https://i.postimg.cc/zGPLJ6Gg/Banner-Escrit-rio-3.png',
       alt: 'Bônus 3: Escritório Mental',
       title: 'Bônus 3: Escritório Mental',
       url: 'https://www.miniatura3.com',
@@ -35,7 +35,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus4',
-      src: 'https://i.postimg.cc/3dPJgMkf/Banner-Mapa-4.png',
+      src: 'https://i.postimg.cc/sg2QCssz/Banner-Mapa-4.png',
       alt: 'Bônus 4: Mapa da Prosperidade',
       title: 'Bônus 4: Mapa da Prosperidade',
       url: 'https://www.miniatura4.com',
@@ -43,7 +43,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus5',
-      src: 'https://i.postimg.cc/d7Fsx8m8/Banner-Manual-5.png',
+      src: 'https://i.postimg.cc/W4Fdt8df/Banner-Manual-5.png',
       alt: 'Bônus 5: Manual da Reprogramação',
       title: 'Bônus 5: Manual da Reprogramação',
       url: 'https://www.miniatura5.com',
@@ -51,7 +51,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus6',
-      src: 'https://i.postimg.cc/DSq49RPZ/Banner-C-digo-6.png',
+      src: 'https://i.postimg.cc/htY8dBJ9/Banner-C-digo-6.png',
       alt: 'Bônus 6: Código Secreto',
       title: 'Bônus 6: Código Secreto',
       url: 'https://www.miniatura6.com',
