@@ -164,7 +164,7 @@ function App() {
         onUnlock={unlockFAD} 
       />
       <CommunitySection />
-      <BonusSection />
+      <BonusSection user={user} />
       <MaterialsSection />
       <MentorshipSection />
       <ProsperitySection 
