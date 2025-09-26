@@ -29,21 +29,29 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
   };
 
   const getAvatarUrl = () => {
-    const avatarId = user?.user_metadata?.avatar || 'avatar1';
-    const avatarMap: Record<string, string> = {
-      avatar1: 'https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar2: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar3: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar4: 'https://images.pexels.com/photos/3820333/pexels-photo-3820333.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar5: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar6: 'https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar7: 'https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar8: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar9: 'https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-      avatar10: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
-    };
-    return avatarMap[avatarId] || avatarMap.avatar1;
+    return user?.user_metadata?.avatar_url || null;
   };
+
+  const renderAvatar = () => {
+    const avatarUrl = getAvatarUrl();
+    
+    if (avatarUrl) {
+      return (
+        <img
+          src={avatarUrl}
+          alt="Avatar"
+          className="w-full h-full object-cover"
+        />
+      );
+    }
+    
+    return (
+      <div className="w-full h-full bg-[#FFD166] flex items-center justify-center">
+        <User className="w-5 h-5 text-black" />
+      </div>
+    );
+  };
+
   return (
     <>
       <header className="bg-black/40 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
@@ -72,11 +80,7 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
                   className="flex items-center space-x-3 bg-white/10 hover:bg-white/20 rounded-lg px-4 py-2 transition-all duration-300"
                 >
                   <div className="w-8 h-8 rounded-full overflow-hidden">
-                    <img
-                      src={getAvatarUrl()}
-                      alt="Avatar"
-                      className="w-full h-full object-cover"
-                    />
+                    {renderAvatar()}
                   </div>
                   <div className="text-left">
                     <p className="text-white text-sm font-medium">

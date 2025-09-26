@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Lock, Camera, Save, X } from 'lucide-react';
+import { User, Lock, Camera, Save, X, Upload } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface AccountModalProps {
@@ -12,29 +12,65 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [selectedAvatar, setSelectedAvatar] = useState(user.user_metadata?.avatar || 'avatar1');
   const [name, setName] = useState(user.user_metadata?.name || '');
+  const [avatarUrl, setAvatarUrl] = useState(user.user_metadata?.avatar_url || '');
+  const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error'>('success');
-
-  const avatarOptions = [
-    { id: 'avatar1', url: 'https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar2', url: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar3', url: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar4', url: 'https://images.pexels.com/photos/3820333/pexels-photo-3820333.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar5', url: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar6', url: 'https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar7', url: 'https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar8', url: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar9', url: 'https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
-    { id: 'avatar10', url: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' }
-  ];
 
   const showMessage = (text: string, type: 'success' | 'error') => {
     setMessage(text);
     setMessageType(type);
     setTimeout(() => setMessage(''), 5000);
+  };
+
+  const uploadAvatar = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setUploading(true);
+
+      if (!event.target.files || event.target.files.length === 0) {
+        throw new Error('Você deve selecionar uma imagem para upload.');
+      }
+
+      const file = event.target.files[0];
+      
+      // Validar tipo de arquivo
+      if (!file.type.startsWith('image/')) {
+        throw new Error('Por favor, selecione apenas arquivos de imagem.');
+      }
+
+      // Validar tamanho do arquivo (máximo 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error('A imagem deve ter no máximo 5MB.');
+      }
+
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}-${Math.random()}.${fileExt}`;
+      const filePath = `avatars/${fileName}`;
+
+      // Upload do arquivo
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      // Obter URL pública
+      const { data } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(filePath);
+
+      setAvatarUrl(data.publicUrl);
+      showMessage('Imagem carregada com sucesso!', 'success');
+
+    } catch (error: any) {
+      showMessage('Erro ao fazer upload: ' + error.message, 'error');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handlePasswordChange = async () => {
@@ -72,7 +108,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
     const { data, error } = await supabase.auth.updateUser({
       data: {
         name,
-        avatar: selectedAvatar
+        avatar_url: avatarUrl
       }
     });
 
@@ -84,6 +120,29 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
     }
 
     setLoading(false);
+  };
+
+  const removeAvatar = async () => {
+    try {
+      setUploading(true);
+      
+      // Se há uma imagem atual, tentar removê-la do storage
+      if (avatarUrl && avatarUrl.includes('avatars/')) {
+        const fileName = avatarUrl.split('/').pop();
+        if (fileName) {
+          await supabase.storage
+            .from('avatars')
+            .remove([`avatars/${fileName}`]);
+        }
+      }
+
+      setAvatarUrl('');
+      showMessage('Foto removida com sucesso!', 'success');
+    } catch (error: any) {
+      showMessage('Erro ao remover foto: ' + error.message, 'error');
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -138,30 +197,56 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
             </div>
           </div>
 
-          {/* Foto de Perfil */}
+          {/* Upload de Foto de Perfil */}
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
               <Camera className="w-5 h-5 mr-2" />
               Foto de Perfil
             </h3>
-            <div className="grid grid-cols-5 gap-3">
-              {avatarOptions.map((avatar) => (
-                <button
-                  key={avatar.id}
-                  onClick={() => setSelectedAvatar(avatar.id)}
-                  className={`relative w-16 h-16 rounded-full overflow-hidden border-2 transition-all duration-300 ${
-                    selectedAvatar === avatar.id 
-                      ? 'border-[#FFD166] ring-2 ring-[#FFD166]/50' 
-                      : 'border-white/20 hover:border-white/40'
-                  }`}
-                >
-                  <img
-                    src={avatar.url}
-                    alt={`Avatar ${avatar.id}`}
-                    className="w-full h-full object-cover"
+            
+            <div className="flex flex-col items-center space-y-4">
+              {/* Preview da imagem atual */}
+              <div className="relative">
+                {avatarUrl ? (
+                  <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white/20">
+                    <img
+                      src={avatarUrl}
+                      alt="Avatar atual"
+                      className="w-full h-full object-cover"
+                    />
+                    <button
+                      onClick={removeAvatar}
+                      disabled={uploading}
+                      className="absolute top-2 right-2 p-1 bg-red-500 hover:bg-red-600 rounded-full text-white transition-all duration-300"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-32 h-32 rounded-full bg-white/10 border-4 border-white/20 flex items-center justify-center">
+                    <User className="w-16 h-16 text-gray-400" />
+                  </div>
+                )}
+              </div>
+
+              {/* Input de upload */}
+              <div className="flex flex-col items-center space-y-2">
+                <label className="cursor-pointer bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-semibold px-6 py-2 rounded-lg transition-all duration-300 flex items-center">
+                  <Upload className="w-4 h-4 mr-2" />
+                  {uploading ? 'Carregando...' : 'Escolher Foto'}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={uploadAvatar}
+                    disabled={uploading}
+                    className="hidden"
                   />
-                </button>
-              ))}
+                </label>
+                <p className="text-gray-400 text-xs text-center">
+                  Formatos aceitos: JPG, PNG, GIF<br />
+                  Tamanho máximo: 5MB
+                </p>
+              </div>
             </div>
           </div>
 
@@ -206,7 +291,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
           <div className="flex justify-end">
             <button
               onClick={handleProfileUpdate}
-              disabled={loading}
+              disabled={loading || uploading}
               className="bg-[#FFD166] hover:bg-[#FFD166]/90 disabled:bg-gray-600 disabled:cursor-not-allowed text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 flex items-center"
             >
               <Save className="w-4 h-4 mr-2" />
