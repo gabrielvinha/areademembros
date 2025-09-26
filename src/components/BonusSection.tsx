@@ -128,19 +128,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
                   {!isUnlocked && (
                     <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center rounded-lg">
                       <div className="text-center">
-                        {daysRemaining > 0 ? (
-                          <>
-                            <Clock className="w-12 h-12 text-[#FFD166] mb-3 mx-auto" />
-                            <div className="bg-[#FFD166] text-black px-4 py-2 rounded-full font-bold text-sm">
-                              {daysRemaining} {daysRemaining === 1 ? 'dia' : 'dias'} restantes
-                            </div>
-                            <p className="text-white text-xs mt-2 opacity-80">
-                              Libera em {bonus.unlockDays} dias
-                            </p>
-                          </>
-                        ) : (
-                          <Lock className="w-12 h-12 text-gray-400" />
-                        )}
+                        <Lock className="w-12 h-12 text-gray-400" />
                       </div>
                     </div>
                   )}
