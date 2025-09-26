@@ -9,6 +9,7 @@ import BonusSection from './components/BonusSection';
 import MaterialsSection from './components/MaterialsSection';
 import MentorshipSection from './components/MentorshipSection';
 import ProsperitySection from './components/ProsperitySection';
+import FADSection from './components/FADSection';
 
 function App() {
   const removeFloating = () => {
@@ -26,6 +27,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [unlockedModules, setUnlockedModules] = useState(new Set(['module1']));
   const [prosperityUnlocked, setProsperityUnlocked] = useState(false);
+  const [fadUnlocked, setFadUnlocked] = useState(false);
   const [user, setUser] = useState<any>(null);
 
   const handleUserUpdate = (updatedUser: any) => {
@@ -39,6 +41,7 @@ function App() {
         setIsAuthenticated(true);
         setUser(session.user);
         loadUserModules(session.user.id);
+        setFadUnlocked(false);
       }
       setLoading(false);
     });
@@ -73,6 +76,7 @@ function App() {
       const moduleIds = modules.map(m => m.module_id);
       setUnlockedModules(new Set(['module1', ...moduleIds]));
       setProsperityUnlocked(moduleIds.includes('prosperity'));
+      setFadUnlocked(moduleIds.includes('fad'));
     }
   };
 
@@ -116,6 +120,23 @@ function App() {
     }
   };
 
+  const unlockFAD = async () => {
+    if (user) {
+      const { error } = await supabase
+        .from('user_modules')
+        .upsert({
+          user_id: user.id,
+          module_id: 'fad',
+        }, {
+          onConflict: 'user_id,module_id'
+        });
+
+      if (!error) {
+        setFadUnlocked(true);
+      }
+    }
+  };
+
   const scrollToModules = () => {
     const modulesSection = document.getElementById('modules-section');
     modulesSection?.scrollIntoView({ behavior: 'smooth' });
@@ -138,6 +159,10 @@ function App() {
       <Header user={user} onUserUpdate={handleUserUpdate} />
       <HeroSection onStartClick={scrollToModules} />
       <ModulesSection unlockedModules={unlockedModules} onUnlock={unlockModule} />
+      <FADSection 
+        isUnlocked={fadUnlocked} 
+        onUnlock={unlockFAD} 
+      />
       <CommunitySection />
       <BonusSection />
       <MaterialsSection />
