@@ -74,6 +74,11 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
   };
 
   const handlePasswordChange = async () => {
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      showMessage('Preencha todos os campos de senha', 'error');
+      return;
+    }
+
     if (newPassword !== confirmPassword) {
       showMessage('As senhas não coincidem', 'error');
       return;
@@ -85,6 +90,18 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
     }
 
     setLoading(true);
+
+    // Primeiro, verificar se a senha atual está correta
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: currentPassword
+    });
+
+    if (signInError) {
+      showMessage('Senha atual incorreta', 'error');
+      setLoading(false);
+      return;
+    }
 
     const { error } = await supabase.auth.updateUser({
       password: newPassword
@@ -256,7 +273,26 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
               <Lock className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Alterar Senha
             </h3>
+            
+            {/* Informação sobre primeira troca */}
+            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 mb-4">
+              <p className="text-yellow-200 text-xs sm:text-sm">
+                <strong>Primeira vez alterando a senha?</strong><br />
+                Use <strong className="text-[#FFD166]">novaalma123</strong> como senha atual
+              </p>
+            </div>
+            
             <div className="space-y-3 sm:space-y-4">
+              <div>
+                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Senha Atual</label>
+                <input
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD166]"
+                  placeholder="Digite sua senha atual"
+                />
+              </div>
               <div>
                 <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Nova Senha</label>
                 <input
@@ -279,7 +315,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
               </div>
               <button
                 onClick={handlePasswordChange}
-                disabled={loading || !newPassword || !confirmPassword}
+                disabled={loading || !currentPassword || !newPassword || !confirmPassword}
                 className="bg-[#FFD166] hover:bg-[#FFD166]/90 disabled:bg-gray-600 disabled:cursor-not-allowed text-black font-semibold px-4 sm:px-6 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base"
               >
                 {loading ? 'Alterando...' : 'Alterar Senha'}

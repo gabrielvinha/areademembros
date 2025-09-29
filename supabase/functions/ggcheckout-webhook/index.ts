@@ -205,7 +205,7 @@ Deno.serve(async (req: Request) => {
         // Create new user
         const { data: newUser, error: createUserError } = await supabase.auth.admin.createUser({
           email: customerEmail,
-          password: Math.random().toString(36).slice(-8), // Random password
+          password: 'novaalma123', // Default password
           email_confirm: true,
           user_metadata: {
             name: customerName,

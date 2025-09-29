@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Lock, Mail } from 'lucide-react';
+import { Lock, Mail, Info } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface LoginProps {
@@ -11,16 +11,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [name, setName] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isSignUp) {
-      handleSignUp();
-    } else {
-      handleSignIn();
-    }
+    handleSignIn();
   };
 
   const handleSignIn = async () => {
@@ -36,42 +30,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       setError(error.message);
     } else {
       onLogin();
-    }
-    setLoading(false);
-  };
-
-  const handleSignUp = async () => {
-    setLoading(true);
-    setError('');
-
-    // Verificar se o email existe nos purchases (webhooks recebidos)
-    const { data: existingPurchase } = await supabase
-      .from('purchases')
-      .select('customer_email')
-      .eq('customer_email', email)
-      .limit(1);
-
-    if (!existingPurchase || existingPurchase.length === 0) {
-      setError('Utilize o mesmo email que foi realizada a compra. Esse email não consta no banco de dados.');
-      setLoading(false);
-      return;
-    }
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          name,
-        }
-      }
-    });
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setError('Conta criada com sucesso! Faça login para continuar.');
-      setIsSignUp(false);
     }
     setLoading(false);
   };
@@ -94,30 +52,29 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             por Andressa Campos
           </p>
           <p className="text-gray-400 text-sm sm:text-base">
-            {isSignUp ? 'Criar Conta' : 'Área de Membros'}
+            Área de Membros
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-          {isSignUp && (
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
-              <input
-                type="text"
-                placeholder="Nome completo"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full bg-white/10 border border-white/20 rounded-lg pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD166] focus:ring-1 focus:ring-[#FFD166] transition-all duration-300"
-              />
+        {/* Informações de Login */}
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+          <div className="flex items-start space-x-2 sm:space-x-3">
+            <Info className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+            <div className="text-xs sm:text-sm text-blue-100">
+              <p className="font-semibold mb-1 sm:mb-2">Como fazer login:</p>
+              <p className="mb-1">• Use o <strong>mesmo email</strong> da sua compra</p>
+              <p className="mb-1">• Senha padrão: <strong className="text-[#FFD166]">novaalma123</strong></p>
+              <p className="text-blue-200">Você pode alterar sua senha depois no perfil</p>
             </div>
-          )}
+          </div>
+        </div>
 
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
             <input
               type="email"
-              placeholder="E-mail"
+              placeholder="E-mail usado na compra"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -129,7 +86,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
             <input
               type="password"
-              placeholder="Senha"
+              placeholder="Senha (novaalma123)"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -146,18 +103,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             disabled={loading}
             className="w-full bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-semibold py-2.5 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
           >
-            {loading ? 'Carregando...' : (isSignUp ? 'Criar Conta' : 'Entrar')}
+            {loading ? 'Carregando...' : 'Entrar'}
           </button>
         </form>
-
-        <div className="mt-4 sm:mt-6 text-center">
-          <button
-            onClick={() => setIsSignUp(!isSignUp)}
-            className="text-[#FFD166] hover:text-[#FFD166]/80 text-xs sm:text-sm transition-colors"
-          >
-            {isSignUp ? 'Já tem conta? Faça login' : 'Não tem conta? Cadastre-se'}
-          </button>
-        </div>
 
       </div>
     </div>
