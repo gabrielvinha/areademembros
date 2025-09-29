@@ -43,7 +43,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus5',
-      src: 'https://i.postimg.cc/W4Fdt8df/Banner-Manual-5.png',
+      src: 'https://i.ibb.co/v6hs9KD6/Banner-Manual-5.png',
       alt: 'Bônus 5: Manual da Reprogramação',
       title: 'Bônus 5: Manual da Reprogramação',
       url: 'https://www.miniatura5.com',
