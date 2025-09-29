@@ -11,7 +11,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
   const bannerImages = [
     {
       id: 'bonus1',
-      src: 'https://i.postimg.cc/VLgrhdy4/Banner-Detox-1.png',
+      src: 'https://i.ibb.co/jZvkpTcY/Banner-Detox-1.png',
       alt: 'Bônus 1: Detox da Escassez',
       title: 'Bônus 1: Detox da Escassez',
       url: 'https://www.miniatura1.com',
