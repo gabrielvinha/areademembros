@@ -35,7 +35,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus4',
-      src: 'https://i.postimg.cc/sg2QCssz/Banner-Mapa-4.png',
+      src: 'https://i.ibb.co/dwLYL5Cg/Banner-Mapa-4.png',
       alt: 'Bônus 4: Mapa da Prosperidade',
       title: 'Bônus 4: Mapa da Prosperidade',
       url: 'https://www.miniatura4.com',
