@@ -11,7 +11,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onStartClick }) => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url(https://i.ibb.co/MypqnLDX/banner-desktop.png)',
+          backgroundImage: 'url(https://i.ibb.co/d4zNNxs9/Banner-Card-2.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
