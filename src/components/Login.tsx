@@ -80,7 +80,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     <div 
       className="min-h-screen flex items-center justify-center p-3 sm:p-4 relative"
       style={{
-        backgroundImage: 'url(https://i.postimg.cc/4d9M7MXK/banner-desktop.png)',
+        backgroundImage: 'url(https://i.ibb.co/MypqnLDX/banner-desktop.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
