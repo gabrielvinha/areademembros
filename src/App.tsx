@@ -36,15 +36,36 @@ function App() {
 
   useEffect(() => {
     // Check initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setIsAuthenticated(true);
-        setUser(session.user);
-        loadUserModules(session.user.id);
+    const checkSession = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error || !session) {
+          // Reset to unauthenticated state
+          setIsAuthenticated(false);
+          setUser(null);
+          setUnlockedModules(new Set(['module1']));
+          setProsperityUnlocked(false);
+          setFadUnlocked(false);
+        } else {
+          setIsAuthenticated(true);
+          setUser(session.user);
+          loadUserModules(session.user.id);
+          setFadUnlocked(false);
+        }
+      } catch (err) {
+        // Handle any unexpected errors by resetting to unauthenticated state
+        setIsAuthenticated(false);
+        setUser(null);
+        setUnlockedModules(new Set(['module1']));
+        setProsperityUnlocked(false);
         setFadUnlocked(false);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    });
+    };
+    
+    checkSession();
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
