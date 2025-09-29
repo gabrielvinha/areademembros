@@ -27,7 +27,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus3',
-      src: 'https://i.postimg.cc/zGPLJ6Gg/Banner-Escrit-rio-3.png',
+      src: 'https://i.ibb.co/b5jbV4Fn/Banner-Escrit-rio-3.png',
       alt: 'Bônus 3: Escritório Mental',
       title: 'Bônus 3: Escritório Mental',
       url: 'https://www.miniatura3.com',
