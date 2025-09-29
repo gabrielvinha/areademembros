@@ -13,8 +13,21 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
   const [showAccountModal, setShowAccountModal] = useState(false);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setShowDropdown(false);
+    try {
+      await supabase.auth.signOut();
+    } catch (error: any) {
+      // If session doesn't exist, user is effectively logged out
+      // The onAuthStateChange listener will handle the state update
+      if (error?.message?.includes('Session from session_id claim in JWT does not exist')) {
+        // Suppress this error as it's expected when session is already invalid
+        console.log('Session already invalid, user logged out');
+      } else {
+        // Log other unexpected errors
+        console.error('Logout error:', error);
+      }
+    } finally {
+      setShowDropdown(false);
+    }
   };
 
   const handleAccountClick = () => {
