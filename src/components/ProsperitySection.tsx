@@ -61,11 +61,11 @@ const ProsperitySection: React.FC<ProsperitySectionProps> = ({ isUnlocked, onUnl
   };
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-12 text-center">Prosperidade e Energia</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Prosperidade e Energia</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12">
           {prosperityItems.map((item) => (
             <div
               key={item.id}
@@ -74,7 +74,7 @@ const ProsperitySection: React.FC<ProsperitySectionProps> = ({ isUnlocked, onUnl
                 isUnlocked ? 'cursor-pointer' : 'cursor-not-allowed'
               }`}
             >
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-to-b from-transparent to-black/80">
+              <div className="aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-transparent to-black/80">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -85,19 +85,19 @@ const ProsperitySection: React.FC<ProsperitySectionProps> = ({ isUnlocked, onUnl
                 
                 {!isUnlocked && (
                   <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                    <Lock className="w-16 h-16 text-gray-400" />
+                    <Lock className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400" />
                   </div>
                 )}
                 
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
-                  <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                  <p className="text-gray-300 text-sm mt-2">
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
+                  <h3 className="text-sm sm:text-base md:text-xl font-bold text-white leading-tight">{item.title}</h3>
+                  <p className="text-gray-300 text-xs sm:text-sm mt-1 sm:mt-2">
                     {isUnlocked ? 'Clique para acessar' : 'Bloqueado'}
                   </p>
                 </div>
               </div>
               
-              <div className={`absolute inset-0 rounded-2xl ring-2 ring-transparent transition-all duration-500 ${
+              <div className={`absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent transition-all duration-500 ${
                 isUnlocked ? 'group-hover:ring-[#FFD166]/50' : ''
               }`} />
             </div>
@@ -110,17 +110,17 @@ const ProsperitySection: React.FC<ProsperitySectionProps> = ({ isUnlocked, onUnl
             onClick={() => setShowUnlockModal(true)}
             className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
           >
-            <div className="aspect-[3/2] w-96 rounded-2xl overflow-hidden bg-gradient-to-br from-[#FFD166] to-orange-400">
-              <div className="w-full h-full flex flex-col items-center justify-center p-8">
-                <Unlock className="w-24 h-24 text-black mb-6" />
-                <h3 className="text-3xl font-bold text-black text-center">Liberar Tudo</h3>
-                <p className="text-black/80 text-center mt-4">
+            <div className="aspect-[3/2] w-full max-w-sm sm:max-w-md md:w-96 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#FFD166] to-orange-400">
+              <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+                <Unlock className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-black mb-4 sm:mb-6" />
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-black text-center">Liberar Tudo</h3>
+                <p className="text-black/80 text-center mt-2 sm:mt-4 text-sm sm:text-base px-2">
                   Desbloqueie todas as funcionalidades de prosperidade e energia
                 </p>
               </div>
             </div>
             
-            <div className="absolute inset-0 rounded-2xl ring-2 ring-transparent group-hover:ring-white/50 transition-all duration-500" />
+            <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent group-hover:ring-white/50 transition-all duration-500" />
           </div>
         </div>
       </div>
