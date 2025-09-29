@@ -51,7 +51,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
     },
     {
       id: 'bonus6',
-      src: 'https://i.postimg.cc/htY8dBJ9/Banner-C-digo-6.png',
+      src: 'https://i.ibb.co/9H2phsLX/Banner-C-digo-6.png',
       alt: 'Bônus 6: Código Secreto',
       title: 'Bônus 6: Código Secreto',
       url: 'https://www.miniatura6.com',
