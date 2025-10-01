@@ -9,7 +9,7 @@ const MentorshipSection: React.FC = () => {
     {
       id: 'mentorship1',
       title: 'Ressurreição Pessoal: Mentoria 1 a 1',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
+      image: 'https://i.ibb.co/S4YkLwbg/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-3.png',
       videoId: 'dQw4w9WgXcQ',
       ctaText: 'Quero minha vaga',
       url: 'https://produto1.com'
@@ -17,7 +17,7 @@ const MentorshipSection: React.FC = () => {
     {
       id: 'mentorship2',
       title: 'MENTORIA EM GRUPO',
-      image: 'https://i.postimg.cc/TwRYJCt5/image.png',
+      image: 'https://i.ibb.co/Y4WzqFM8/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-4.png',
       videoId: 'dQw4w9WgXcQ',
       ctaText: 'Liberar acompanhamento',
       url: 'https://produto2.com'
@@ -25,7 +25,7 @@ const MentorshipSection: React.FC = () => {
     {
       id: 'mentorship3',
       title: 'Desafio 21 Dias de Manifestação',
-      image: 'https://i.postimg.cc/gkwcswHs/image.png',
+      image: 'https://i.ibb.co/JF7Sg295/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-5.png',
       videoId: 'dQw4w9WgXcQ',
       ctaText: 'Garantir minha vaga',
       url: 'https://produto3.com'

@@ -18,19 +18,19 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
     {
       id: 'fad1',
       title: 'Reprogramação Subconsciente Financeira',
-      image: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
+      image: 'https://i.ibb.co/cKKs2CtK/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1.png',
       videoId: 'gSD0fFnpiGw'
     },
     {
       id: 'fad2',
       title: 'Reprogramação Subconsciente Relacionamento',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
+      image: 'https://i.ibb.co/gMqY8M6J/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar.png',
       videoId: 'sst2c-IYjS4'
     },
     {
       id: 'fad3',
       title: 'Reprogramação Subconsciente Saúde',
-      image: 'https://images.pexels.com/photos/3820333/pexels-photo-3820333.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
+      image: 'https://i.ibb.co/Wp5Z9jFb/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-2.png',
       videoId: 'P_eaOu4QpWQ'
     }
   ];
