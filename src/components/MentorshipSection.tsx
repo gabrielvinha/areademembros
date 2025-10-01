@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Lock } from 'lucide-react';
 import Modal from './Modal';
 import VideoPlayer from './VideoPlayer';
 
@@ -33,7 +34,8 @@ const MentorshipSection: React.FC = () => {
   ];
 
   const handleMentorshipClick = (mentorshipId: string) => {
-    setSelectedMentorship(mentorshipId);
+    // Temporariamente desabilitado
+    return;
   };
 
   const selectedMentorshipData = mentorships.find(m => m.id === selectedMentorship);
@@ -47,23 +49,28 @@ const MentorshipSection: React.FC = () => {
           {mentorships.map((mentorship) => (
             <div
               key={mentorship.id}
-              onClick={() => handleMentorshipClick(mentorship.id)}
-              className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
+              className="relative group cursor-not-allowed transform transition-all duration-500"
             >
               <div className="aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-transparent to-black/80">
                 <img
                   src={mentorship.image}
                   alt={mentorship.title}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-all duration-500 grayscale"
                 />
+                
+                {/* Overlay de bloqueio */}
+                <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center">
+                  <Lock className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mb-2" />
+                  <p className="text-gray-300 text-xs sm:text-sm font-semibold">Temporariamente Fechado</p>
+                </div>
                 
                 <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
                   <h3 className="text-sm sm:text-base md:text-xl font-bold text-white leading-tight">{mentorship.title}</h3>
-                  <p className="text-gray-300 text-xs sm:text-sm mt-1 sm:mt-2">Clique para mais detalhes</p>
+                  <p className="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2">Em breve disponível</p>
                 </div>
               </div>
               
-              <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent group-hover:ring-[#FFD166]/50 transition-all duration-500" />
+              <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent transition-all duration-500" />
             </div>
           ))}
         </div>
