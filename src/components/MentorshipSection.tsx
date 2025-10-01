@@ -16,7 +16,7 @@ const MentorshipSection: React.FC = () => {
     },
     {
       id: 'mentorship2',
-      title: 'MENTORIA EM GRUPO',
+      title: 'Acompanhamento Personalizado',
       image: 'https://i.ibb.co/Y4WzqFM8/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-4.png',
       videoId: 'dQw4w9WgXcQ',
       ctaText: 'Liberar acompanhamento',
