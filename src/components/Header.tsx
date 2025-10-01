@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <div className="w-5 h-5 sm:w-6 sm:h-12 bg-[#FFD166] rounded-xl flex items-center justify-center">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 bg-[#FFD166] rounded-xl flex items-center justify-center">
                 <img 
                   src="https://i.ibb.co/RtzWx4q/logo-andressa.png" 
                   alt="Logo" 
