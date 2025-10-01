@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
             <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFD166] rounded-xl flex items-center justify-center">
                 <img 
-                  src="https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" 
+                  src="https://i.ibb.co/RtzWx4q/logo-andressa.png" 
                   alt="Logo" 
                   className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg object-cover"
                 />
