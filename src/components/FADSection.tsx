@@ -47,7 +47,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
   };
 
   const handleCheckout = () => {
-    window.open('https://www.checkoutupsell.com', '_blank');
+    window.open('https://www.ggcheckout.com/checkout/v2/J25a3PtsEN7s4EFuNxFx', '_blank');
   };
 
   const handleItemClick = (videoId: string) => {
