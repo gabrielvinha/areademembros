@@ -45,7 +45,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
     {
       id: 'lesson1',
       title: 'Aula 1: Onde começa a frequência da Alma',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhgQz6fhmkDGyGVMgV-6HlLL3IgjVtLfEWg&s',
       videoId: 'Pix9tqIw0_k'
     },
     {
