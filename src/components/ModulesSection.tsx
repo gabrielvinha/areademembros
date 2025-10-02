@@ -51,7 +51,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
     {
       id: 'lesson2',
       title: 'Aula 2: Como o corpo fala antes da mente',
-      image: 'https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+      image: 'https://ribasclinicapsicologia.com.br/wp-content/uploads/2025/03/image_fx_-62-1024x717.png',
       videoId: 'Eq52OT_ocmY'
     },
     {
