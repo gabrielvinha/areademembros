@@ -63,7 +63,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
     {
       id: 'lesson4',
       title: 'Aula 4: A Revelação do Código Oculto do Coração',
-      image: 'https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+      image: 'https://png.pngtree.com/thumb_back/fw800/background/20220203/pngtree-love-heart-embedded-in-black-and-white-binary-computer-code-background-photo-image_15829942.jpg',
       videoId: '8OiJKAoMjJI'
     }
   ];
