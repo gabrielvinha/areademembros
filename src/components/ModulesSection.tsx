@@ -57,7 +57,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
     {
       id: 'lesson3',
       title: 'Aula 3: O Coração como Criador da Realidade',
-      image: 'https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+      image: 'https://i.redd.it/abcp6k9aayoc1.jpeg',
       videoId: 'oi1Fk70QCgA'
     },
     {
