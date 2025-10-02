@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, Mail, Info } from 'lucide-react';
+import { Lock, Mail, User } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface LoginProps {
@@ -7,19 +7,27 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
+  const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleSignIn();
+    if (isSignUp) {
+      handleSignUp();
+    } else {
+      handleSignIn();
+    }
   };
 
   const handleSignIn = async () => {
     setLoading(true);
     setError('');
+    setSuccess('');
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -27,15 +35,58 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     });
 
     if (error) {
-      setError(error.message);
+      setError('Email ou senha incorretos');
     } else {
       onLogin();
     }
     setLoading(false);
   };
 
+  const handleSignUp = async () => {
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    if (password.length < 6) {
+      setError('A senha deve ter pelo menos 6 caracteres');
+      setLoading(false);
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name: name,
+        }
+      }
+    });
+
+    if (error) {
+      setError(error.message);
+    } else if (data.user) {
+      const { error: profileError } = await supabase
+        .from('user_profiles')
+        .insert({
+          id: data.user.id,
+          name: name,
+        });
+
+      if (profileError) {
+        console.error('Error creating profile:', profileError);
+      }
+
+      setSuccess('Conta criada com sucesso! Você já está logado.');
+      setTimeout(() => {
+        onLogin();
+      }, 1500);
+    }
+    setLoading(false);
+  };
+
   return (
-    <div 
+    <div
       className="min-h-screen flex items-center justify-center p-3 sm:p-4 relative"
       style={{
         backgroundImage: 'url(https://i.ibb.co/MypqnLDX/banner-desktop.png)',
@@ -56,25 +107,59 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </p>
         </div>
 
-        {/* Informações de Login */}
-        <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-          <div className="flex items-start space-x-2 sm:space-x-3">
-            <Info className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 mt-0.5 flex-shrink-0" />
-            <div className="text-xs sm:text-sm text-blue-100">
-              <p className="font-semibold mb-1 sm:mb-2">Como fazer login:</p>
-              <p className="mb-1">• Use o <strong>mesmo email</strong> da sua compra</p>
-              <p className="mb-1">• Senha padrão: <strong className="text-[#FFD166]">novaalma123</strong></p>
-              <p className="text-blue-200">Você pode alterar sua senha depois no perfil</p>
-            </div>
-          </div>
+        <div className="flex gap-2 mb-6">
+          <button
+            type="button"
+            onClick={() => {
+              setIsSignUp(false);
+              setError('');
+              setSuccess('');
+            }}
+            className={`flex-1 py-2 rounded-lg font-semibold transition-all duration-300 ${
+              !isSignUp
+                ? 'bg-[#FFD166] text-black'
+                : 'bg-white/10 text-white hover:bg-white/20'
+            }`}
+          >
+            Entrar
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setIsSignUp(true);
+              setError('');
+              setSuccess('');
+            }}
+            className={`flex-1 py-2 rounded-lg font-semibold transition-all duration-300 ${
+              isSignUp
+                ? 'bg-[#FFD166] text-black'
+                : 'bg-white/10 text-white hover:bg-white/20'
+            }`}
+          >
+            Criar Conta
+          </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+          {isSignUp && (
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+              <input
+                type="text"
+                placeholder="Seu nome"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="w-full bg-white/10 border border-white/20 rounded-lg pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD166] focus:ring-1 focus:ring-[#FFD166] transition-all duration-300"
+              />
+            </div>
+          )}
+
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
             <input
               type="email"
-              placeholder="E-mail usado na compra"
+              placeholder="Seu e-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -86,7 +171,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
             <input
               type="password"
-              placeholder="Senha (novaalma123)"
+              placeholder={isSignUp ? "Crie uma senha (mín. 6 caracteres)" : "Sua senha"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -98,12 +183,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             <p className="text-red-400 text-xs sm:text-sm text-center">{error}</p>
           )}
 
+          {success && (
+            <p className="text-green-400 text-xs sm:text-sm text-center">{success}</p>
+          )}
+
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-semibold py-2.5 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+            className="w-full bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-semibold py-2.5 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Carregando...' : 'Entrar'}
+            {loading ? 'Carregando...' : isSignUp ? 'Criar Conta' : 'Entrar'}
           </button>
         </form>
 
