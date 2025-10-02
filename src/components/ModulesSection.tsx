@@ -51,7 +51,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
     {
       id: 'lesson2',
       title: 'Aula 2: Como o corpo fala antes da mente',
-      image: 'https://ribasclinicapsicologia.com.br/wp-content/uploads/2025/03/image_fx_-62-1024x717.png',
+      image: 'https://wp-content.lamenteemeravigliosa.it/2023/07/mente-e-corpo-in-relazione-secondo-la-filosofia-1200x808-1.jpg',
       videoId: 'Eq52OT_ocmY'
     },
     {
