@@ -128,7 +128,10 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
                   {!isUnlocked && (
                     <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center rounded-lg">
                       <div className="text-center">
-                        <Lock className="w-12 h-12 text-gray-400" />
+                        <Lock className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mb-3" />
+                        <p className="text-white text-sm sm:text-base font-semibold">
+                          Libera em {daysRemaining} {daysRemaining === 1 ? 'dia' : 'dias'}
+                        </p>
                       </div>
                     </div>
                   )}

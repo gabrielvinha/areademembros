@@ -186,7 +186,7 @@ function App() {
       />
       <CommunitySection />
       <BonusSection user={user} />
-      <MaterialsSection />
+      <MaterialsSection user={user} />
       <MentorshipSection />
       <ProsperitySection 
         isUnlocked={prosperityUnlocked} 
