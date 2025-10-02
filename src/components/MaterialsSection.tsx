@@ -104,8 +104,8 @@ const MaterialsSection: React.FC<MaterialsSectionProps> = ({ user }) => {
                   {!isUnlocked && (
                     <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center rounded-xl">
                       <div className="text-center px-4">
-                        <Lock className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400 mb-3 mx-auto" />
-                        <p className="text-white text-sm sm:text-base font-semibold">
+                        <Lock className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-gray-400 mb-2 sm:mb-3 mx-auto" />
+                        <p className="text-white text-xs sm:text-sm md:text-base font-semibold">
                           Libera em {daysRemaining} {daysRemaining === 1 ? 'dia' : 'dias'}
                         </p>
                       </div>

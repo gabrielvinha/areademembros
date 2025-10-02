@@ -5,10 +5,11 @@ interface ModuleCardProps {
   title: string;
   image: string;
   isLocked?: boolean;
+  comingSoon?: boolean;
   onClick: () => void;
 }
 
-const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, onClick }) => {
+const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingSoon, onClick }) => {
   return (
     <div
       className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105 w-full"
@@ -21,9 +22,14 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, onClick
           className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
         />
         
-        {isLocked && (
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-            <Lock className="w-12 h-12 sm:w-16 sm:h-16 text-[#FFD166]" />
+        {(isLocked || comingSoon) && (
+          <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center">
+            <Lock className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#FFD166] mb-2" />
+            {comingSoon && (
+              <p className="text-white text-xs sm:text-sm md:text-base font-bold px-4 text-center">
+                EM BREVE
+              </p>
+            )}
           </div>
         )}
         

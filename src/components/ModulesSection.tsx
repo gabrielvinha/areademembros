@@ -28,6 +28,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       title: 'Módulo 2 - QUEBRA DO CICLO DA ESCASSEZ',
       image: 'https://i.postimg.cc/qqjJF46s/image.png',
       isLocked: !unlockedModules.has('module2'),
+      comingSoon: true,
       password: '2025',
       checkoutUrl: 'https://checkoutmodulo2.com',
     },
@@ -36,6 +37,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       title: 'Módulo 3 - MANIFESTAÇÃO SOB DEMANDA',
       image: 'https://i.postimg.cc/qBZW1Nzm/image.png',
       isLocked: !unlockedModules.has('module3'),
+      comingSoon: true,
       password: '2026',
       checkoutUrl: 'https://checkoutmodulo3.com',
     },
@@ -105,6 +107,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
               title={module.title}
               image={module.image}
               isLocked={module.isLocked}
+              comingSoon={module.comingSoon}
               onClick={() => handleModuleClick(module)}
             />
           ))}

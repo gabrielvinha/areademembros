@@ -127,9 +127,9 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
                   {/* Overlay para itens bloqueados */}
                   {!isUnlocked && (
                     <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center rounded-lg">
-                      <div className="text-center">
-                        <Lock className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mb-3" />
-                        <p className="text-white text-sm sm:text-base font-semibold">
+                      <div className="text-center px-4">
+                        <Lock className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 text-gray-400 mb-2 sm:mb-3 mx-auto" />
+                        <p className="text-white text-xs sm:text-sm md:text-base font-semibold">
                           Libera em {daysRemaining} {daysRemaining === 1 ? 'dia' : 'dias'}
                         </p>
                       </div>
