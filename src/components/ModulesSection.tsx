@@ -45,8 +45,8 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
     {
       id: 'lesson1',
       title: 'Aula 1: Onde começa a frequência da Alma',
-      image: 'https://wp-content.lamenteemeravigliosa.it/2023/07/mente-e-corpo-in-relazione-secondo-la-filosofia-1200x808-1.jpg',
-      videoId: 'Pix9tqIw0_k'
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhgQz6fhmkDGyGVMgV-6HlLL3IgjVtLfEWg&s',
+      videoId: 'Pix9tqIw0_k' 
     },
     {
       id: 'lesson2',
