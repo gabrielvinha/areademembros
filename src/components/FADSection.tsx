@@ -168,41 +168,91 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
       {/* Modal de Desbloqueio */}
       {showUnlockModal && (
         <Modal onClose={() => setShowUnlockModal(false)}>
-          <div className="p-6 text-center">
-            <Unlock className="w-16 h-16 text-[#FFD166] mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Desbloqueie a Frequência da Abundância Dormindo
-            </h3>
-            <p className="text-gray-300 mb-6">
-              Acesse todas as reprogramações subconscientes e transforme sua vida enquanto dorme
-            </p>
-            
-            <div className="space-y-4">
-              <button
-                onClick={handleCheckout}
-                className="w-full bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
-                Desbloquear agora
-              </button>
-              
-              <div className="border-t border-white/20 pt-4">
-                <p className="text-gray-400 mb-3">Já adquiriu? Digite o código recebido por e-mail:</p>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD166]"
-                  placeholder="Digite o código"
-                />
-                {passwordError && (
-                  <p className="text-red-400 text-sm mt-2">{passwordError}</p>
-                )}
-                <button
-                  onClick={handlePasswordSubmit}
-                  className="w-full mt-3 bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-all duration-300"
-                >
-                  Confirmar
-                </button>
+          <div className="p-6 sm:p-8">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Tutorial de Acesso ao Produto</h2>
+              <p className="text-gray-300 text-sm sm:text-base">Guia completo para desbloquear seu acesso na área de membros</p>
+            </div>
+
+            <div className="space-y-6">
+              {/* Passo 1 */}
+              <div className="bg-white/5 rounded-lg p-4 sm:p-6">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-[#FFD166] rounded-full flex items-center justify-center">
+                    <span className="text-black font-bold text-lg sm:text-xl">1</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-white font-bold text-lg sm:text-xl mb-2">Já Comprou o Produto?</h3>
+                    <p className="text-gray-300 text-sm sm:text-base">
+                      Se você já efetuou o pagamento, você recebeu um código de acesso no seu e-mail. Localize este código e copie-o.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Passo 2 */}
+              <div className="bg-white/5 rounded-lg p-4 sm:p-6">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-[#FFD166] rounded-full flex items-center justify-center">
+                    <span className="text-black font-bold text-lg sm:text-xl">2</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-white font-bold text-lg sm:text-xl mb-2">Desbloqueie na Área de Membros</h3>
+                    <p className="text-gray-300 text-sm sm:text-base mb-4">
+                      Insira o código recebido por e-mail no campo abaixo:
+                    </p>
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD166] mb-2"
+                      placeholder="Digite o código de acesso"
+                    />
+                    {passwordError && (
+                      <p className="text-red-400 text-sm mb-2">{passwordError}</p>
+                    )}
+                    <button
+                      onClick={handlePasswordSubmit}
+                      className="w-full bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Desbloquear Acesso
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Passo 3 */}
+              <div className="bg-white/5 rounded-lg p-4 sm:p-6">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-[#FFD166] rounded-full flex items-center justify-center">
+                    <span className="text-black font-bold text-lg sm:text-xl">3</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-white font-bold text-lg sm:text-xl mb-2">Ainda Não Comprou?</h3>
+                    <p className="text-gray-300 text-sm sm:text-base mb-4">
+                      Se você ainda não efetuou a compra, clique no botão abaixo para adquirir seu acesso:
+                    </p>
+                    <button
+                      onClick={handleCheckout}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Efetuar Compra Agora
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Aviso */}
+              <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-500 text-xl">⚠️</span>
+                  <div>
+                    <h4 className="text-yellow-500 font-bold mb-1">Atenção!</h4>
+                    <p className="text-gray-300 text-sm">
+                      O código de acesso é enviado imediatamente após a confirmação do pagamento. Verifique sua caixa de entrada e também a pasta de spam.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
