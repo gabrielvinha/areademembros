@@ -47,7 +47,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
   };
 
   const handleCheckout = () => {
-    window.open('https://drive.google.com/file/d/1Yo-mjfyVVyV--UbigqPTJbcsZm10evQLV70G_K5lANs/view', '_blank');
+    window.open('https://vocal-sundae-b4d72b.netlify.app/', '_blank');
   };
 
   const handleItemClick = (videoId: string) => {
