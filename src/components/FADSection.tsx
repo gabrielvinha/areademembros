@@ -47,7 +47,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
   };
 
   const handleCheckout = () => {
-    window.open('https://vocal-sundae-b4d72b.netlify.app/', '_blank');
+    window.open('https://andressacampos.com.br/?utm_source=areademembros/', '_blank');
   };
 
   const handleItemClick = (videoId: string) => {
