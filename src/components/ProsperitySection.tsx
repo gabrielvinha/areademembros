@@ -104,25 +104,27 @@ const ProsperitySection: React.FC<ProsperitySectionProps> = ({ isUnlocked, onUnl
           ))}
         </div>
 
-        {/* Card Especial "Liberar Tudo" */}
-        <div className="flex justify-center">
-          <div
-            onClick={() => setShowUnlockModal(true)}
-            className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
-          >
-            <div className="aspect-[3/2] w-full max-w-sm sm:max-w-md md:w-96 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#FFD166] to-orange-400">
-              <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
-                <Unlock className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-black mb-4 sm:mb-6" />
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-black text-center">Liberar Tudo</h3>
-                <p className="text-black/80 text-center mt-2 sm:mt-4 text-sm sm:text-base px-2">
-                  Desbloqueie todas as funcionalidades de prosperidade e energia
-                </p>
+        {/* Card Especial "Liberar Tudo" - só aparece quando não está desbloqueado */}
+        {!isUnlocked && (
+          <div className="flex justify-center">
+            <div
+              onClick={() => setShowUnlockModal(true)}
+              className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
+            >
+              <div className="aspect-[3/2] w-full max-w-sm sm:max-w-md md:w-96 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[#FFD166] to-orange-400">
+                <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+                  <Unlock className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-black mb-4 sm:mb-6" />
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-black text-center">Liberar Tudo</h3>
+                  <p className="text-black/80 text-center mt-2 sm:mt-4 text-sm sm:text-base px-2">
+                    Desbloqueie todas as funcionalidades de prosperidade e energia
+                  </p>
+                </div>
               </div>
+
+              <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent group-hover:ring-white/50 transition-all duration-500" />
             </div>
-            
-            <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent group-hover:ring-white/50 transition-all duration-500" />
           </div>
-        </div>
+        )}
       </div>
 
       {/* Modal de Desbloqueio */}
