@@ -153,7 +153,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
                 Falar no WhatsApp
               </a>
               <a
-                href="https://drive.google.com/file/d/1Yo-mjfyVVyV--UbigqPTJbcsZm10evQLV70G_K5lANs/view"
+                href="https://vocal-sundae-b4d72b.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
