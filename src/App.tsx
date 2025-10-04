@@ -6,7 +6,6 @@ import HeroSection from './components/HeroSection';
 import ModulesSection from './components/ModulesSection';
 import CommunitySection from './components/CommunitySection';
 import BonusSection from './components/BonusSection';
-import MaterialsSection from './components/MaterialsSection';
 import MentorshipSection from './components/MentorshipSection';
 import ProsperitySection from './components/ProsperitySection';
 import FADSection from './components/FADSection';
@@ -186,7 +185,6 @@ function App() {
       />
       <CommunitySection />
       <BonusSection user={user} />
-      <MaterialsSection user={user} />
       <MentorshipSection />
       <ProsperitySection 
         isUnlocked={prosperityUnlocked} 

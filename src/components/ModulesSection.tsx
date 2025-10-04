@@ -71,6 +71,9 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
   ];
 
   const handleModuleClick = (module: any) => {
+    if (module.comingSoon) {
+      return;
+    }
     if (module.isLocked) {
       setShowUnlockModal(module.id);
     } else {
@@ -185,8 +188,8 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
             
             <div className="space-y-4">
               <button
-                onClick={() => handleCheckout(modules.find(m => m.id === showUnlockModal)?.checkoutUrl || '')}
-                className="w-full bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                disabled
+                className="w-full bg-gray-600 cursor-not-allowed text-gray-400 font-bold py-3 rounded-lg opacity-50"
               >
                 {showUnlockModal === 'module2' ? 'Liberar acesso ao Módulo 2' : 'Desbloquear agora'}
               </button>

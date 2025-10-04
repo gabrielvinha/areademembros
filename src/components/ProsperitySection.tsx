@@ -136,8 +136,8 @@ const ProsperitySection: React.FC<ProsperitySectionProps> = ({ isUnlocked, onUnl
             
             <div className="space-y-4">
               <button
-                onClick={handleCheckout}
-                className="w-full bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                disabled
+                className="w-full bg-gray-600 cursor-not-allowed text-gray-400 font-bold py-3 rounded-lg opacity-50"
               >
                 Desbloquear agora
               </button>
