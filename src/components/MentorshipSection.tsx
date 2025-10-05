@@ -9,7 +9,7 @@ const MentorshipSection: React.FC = () => {
   const mentorships = [
     {
       id: 'mentorship1',
-      title: 'Ressurreição Pessoal: Mentoria 1 a 1',
+      title: ' ',
       image: 'https://i.ibb.co/S4YkLwbg/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-3.png',
       videoId: 'dQw4w9WgXcQ',
       ctaText: 'Quero minha vaga',
