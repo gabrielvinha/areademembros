@@ -25,7 +25,7 @@ const MentorshipSection: React.FC = () => {
     },
     {
       id: 'mentorship3',
-      title: 'Desafio 21 Dias de Manifestação',
+      title: ' ',
       image: 'https://i.ibb.co/JF7Sg295/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-5.png',
       videoId: 'dQw4w9WgXcQ',
       ctaText: 'Garantir minha vaga',
