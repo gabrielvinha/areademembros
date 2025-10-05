@@ -23,7 +23,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
     },
     {
       id: 'fad2',
-      title: 'Reprogramação Subconsciente Relacionamento',
+      title: ' ',
       image: 'https://i.ibb.co/gMqY8M6J/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar.png',
       videoId: 'sst2c-IYjS4'
     },
