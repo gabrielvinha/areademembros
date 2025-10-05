@@ -29,7 +29,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
     },
     {
       id: 'fad3',
-      title: 'Reprogramação Subconsciente Saúde',
+      title: ' ',
       image: 'https://i.ibb.co/Wp5Z9jFb/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-2.png',
       videoId: 'P_eaOu4QpWQ'
     }
