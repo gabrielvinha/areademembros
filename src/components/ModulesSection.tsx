@@ -165,7 +165,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
                 Falar no WhatsApp
               </a>
               <a
-                href="https://produto.com"
+                href="https://andressacamposultimachance.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
