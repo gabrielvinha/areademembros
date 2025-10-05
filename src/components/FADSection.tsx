@@ -17,7 +17,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
   const fadItems = [
     {
       id: 'fad1',
-      title: 'Reprogramação Subconsciente Financeira',
+      title: ' ',
       image: 'https://i.ibb.co/cKKs2CtK/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1.png',
       videoId: 'gSD0fFnpiGw'
     },
