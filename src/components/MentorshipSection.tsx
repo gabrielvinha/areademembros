@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock } from 'lucide-react';
+import { Play } from 'lucide-react';
 import Modal from './Modal';
 import VideoPlayer from './VideoPlayer';
 
@@ -11,31 +11,30 @@ const MentorshipSection: React.FC = () => {
       id: 'mentorship1',
       title: ' ',
       image: 'https://i.ibb.co/S4YkLwbg/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-3.png',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 'Gr7jAM_z-B0',
       ctaText: 'Quero minha vaga',
-      url: 'https://produto1.com'
+      url: 'https://www.ggcheckout.com/checkout/v2/AK8lDX8FfyhKJp3G1uWP'
     },
     {
       id: 'mentorship2',
       title: ' ',
       image: 'https://i.ibb.co/Y4WzqFM8/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-4.png',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: 's5mi5QHcUxo',
       ctaText: 'Liberar acompanhamento',
-      url: 'https://produto2.com'
+      url: 'https://www.ggcheckout.com/checkout/v2/b8csr8IKmkiHMflHEL0D'
     },
     {
       id: 'mentorship3',
       title: ' ',
       image: 'https://i.ibb.co/JF7Sg295/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-5.png',
-      videoId: 'dQw4w9WgXcQ',
+      videoId: '_EziY6n19R8',
       ctaText: 'Garantir minha vaga',
-      url: 'https://produto3.com'
+      url: 'https://www.ggcheckout.com/checkout/v2/rEFCDIMwkttBfTIiEZR1'
     }
   ];
 
   const handleMentorshipClick = (mentorshipId: string) => {
-    // Temporariamente desabilitado
-    return;
+    setSelectedMentorship(mentorshipId);
   };
 
   const selectedMentorshipData = mentorships.find(m => m.id === selectedMentorship);
@@ -49,28 +48,30 @@ const MentorshipSection: React.FC = () => {
           {mentorships.map((mentorship) => (
             <div
               key={mentorship.id}
-              className="relative group cursor-not-allowed transform transition-all duration-500"
+              onClick={() => handleMentorshipClick(mentorship.id)}
+              className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
             >
               <div className="aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-transparent to-black/80">
                 <img
                   src={mentorship.image}
                   alt={mentorship.title}
-                  className="w-full h-full object-cover transition-all duration-500 grayscale"
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                 />
-                
-                {/* Overlay de bloqueio */}
-                <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center">
-                  <Lock className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mb-2" />
-                  <p className="text-gray-300 text-xs sm:text-sm font-semibold">Temporariamente Fechado</p>
+
+                {/* Play button overlay */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#FFD166] rounded-full flex items-center justify-center">
+                    <Play className="w-6 h-6 sm:w-8 sm:h-8 text-black ml-1" />
+                  </div>
                 </div>
-                
+
                 <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
                   <h3 className="text-sm sm:text-base md:text-xl font-bold text-white leading-tight">{mentorship.title}</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2">Em breve disponível</p>
+                  <p className="text-gray-300 text-xs sm:text-sm mt-1 sm:mt-2">Clique para assistir</p>
                 </div>
               </div>
-              
-              <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent transition-all duration-500" />
+
+              <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-2 ring-transparent group-hover:ring-[#FFD166]/50 transition-all duration-500" />
             </div>
           ))}
         </div>
