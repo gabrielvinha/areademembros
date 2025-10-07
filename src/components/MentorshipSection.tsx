@@ -88,7 +88,7 @@ const MentorshipSection: React.FC = () => {
             
             <div className="flex gap-4 mt-6">
               <a
-                href="https://wa.me/5500000000000"
+                href="https://wa.me/554899683392"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
