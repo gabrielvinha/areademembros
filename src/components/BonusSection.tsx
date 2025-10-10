@@ -22,7 +22,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       src: 'https://i.ibb.co/6cJGX860/Banner-Prosperidadee-2.png',
       alt: 'Bônus 2: Prosperidade Silenciosa',
       title: 'Bônus 2: Prosperidade Silenciosa',
-      url: 'https://www.miniatura2.com',
+      url: 'https://archive.org/details/codigos-secretos-da-prosperidade',
       unlockDays: 6
     },
     {
