@@ -155,7 +155,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
                 Falar no WhatsApp
               </a>
               <a
-                href="https://www.ggcheckout.com/checkout/v2/f3CG5e3mRwFxK3A2WGIh/?utm_source=areademembros/"
+                href="https://pay.cakto.com.br/38ed933/?utm_source=areademembros/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
