@@ -53,6 +53,8 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
   const handleItemClick = (videoId: string) => {
     if (isUnlocked) {
       setSelectedVideo(videoId);
+    } else {
+      setShowUnlockModal(true);
     }
   };
 
@@ -69,9 +71,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
             <div
               key={item.id}
               onClick={() => handleItemClick(item.videoId)}
-              className={`relative group transform transition-all duration-500 hover:scale-105 ${
-                isUnlocked ? 'cursor-pointer' : 'cursor-not-allowed'
-              }`}
+              className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
             >
               <div className="aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-transparent to-black/80">
                 <img
@@ -99,7 +99,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
                 <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
                   <h3 className="text-sm sm:text-base md:text-xl font-bold text-white leading-tight">{item.title}</h3>
                   <p className="text-gray-300 text-xs sm:text-sm mt-1 sm:mt-2">
-                    {isUnlocked ? 'Clique para assistir' : 'Bloqueado'}
+                    {isUnlocked ? 'Clique para assistir' : 'Clique para desbloquear'}
                   </p>
                 </div>
               </div>
