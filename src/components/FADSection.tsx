@@ -47,7 +47,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
   };
 
   const handleCheckout = () => {
-    window.open('https://www.ggcheckout.com/checkout/v2/f3CG5e3mRwFxK3A2WGIh/?utm_source=areademembros/', '_blank');
+    window.open('https://pay.cakto.com.br/38ed933/?utm_source=areademembros/', '_blank');
   };
 
   const handleItemClick = (videoId: string) => {
