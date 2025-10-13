@@ -49,6 +49,8 @@ function App() {
           setUnlockedModules(new Set(['module1']));
           setProsperityUnlocked(false);
           setFadUnlocked(false);
+          setShowWelcomeModal(false);
+          setUserProfile(null);
         } else {
           setIsAuthenticated(true);
           setUser(session.user);
@@ -62,6 +64,8 @@ function App() {
         setUnlockedModules(new Set(['module1']));
         setProsperityUnlocked(false);
         setFadUnlocked(false);
+        setShowWelcomeModal(false);
+        setUserProfile(null);
       } finally {
         setLoading(false);
       }
@@ -81,6 +85,8 @@ function App() {
           setUser(null);
           setUnlockedModules(new Set(['module1']));
           setProsperityUnlocked(false);
+          setShowWelcomeModal(false);
+          setUserProfile(null);
         }
         setLoading(false);
       }
@@ -102,6 +108,9 @@ function App() {
       setFadUnlocked(moduleIds.includes('fad'));
     }
 
+    const localStorageKey = `welcome_seen_${userId}`;
+    const hasSeenInLocalStorage = localStorage.getItem(localStorageKey) === 'true';
+
     const { data: profile } = await supabase
       .from('user_profiles')
       .select('*')
@@ -110,10 +119,19 @@ function App() {
 
     if (profile) {
       setUserProfile(profile);
-      if (!profile.has_seen_welcome) {
+      console.log('User profile loaded:', { has_seen_welcome: profile.has_seen_welcome });
+
+      const hasSeenWelcome = profile.has_seen_welcome === true || hasSeenInLocalStorage;
+
+      if (!hasSeenWelcome) {
+        console.log('Showing welcome modal for first-time user');
         setShowWelcomeModal(true);
+      } else {
+        console.log('User has already seen welcome modal');
+        setShowWelcomeModal(false);
       }
     } else {
+      console.log('No profile found, creating new profile');
       const { data: newProfile } = await supabase
         .from('user_profiles')
         .insert({ id: userId, has_seen_welcome: false })
@@ -122,7 +140,9 @@ function App() {
 
       if (newProfile) {
         setUserProfile(newProfile);
-        setShowWelcomeModal(true);
+        if (!hasSeenInLocalStorage) {
+          setShowWelcomeModal(true);
+        }
       }
     }
   };
@@ -185,13 +205,28 @@ function App() {
   };
 
   const handleWelcomeComplete = async () => {
-    if (user) {
-      await supabase
+    if (user && userProfile) {
+      console.log('Marking welcome as seen for user:', user.id);
+
+      const localStorageKey = `welcome_seen_${user.id}`;
+      localStorage.setItem(localStorageKey, 'true');
+      console.log('Welcome status saved to localStorage');
+
+      const { error } = await supabase
         .from('user_profiles')
         .update({ has_seen_welcome: true })
         .eq('id', user.id);
 
-      setShowWelcomeModal(false);
+      if (!error) {
+        console.log('Welcome status updated successfully in database');
+        setUserProfile({ ...userProfile, has_seen_welcome: true });
+        setShowWelcomeModal(false);
+        console.log('Modal closed, user profile state updated');
+      } else {
+        console.error('Error updating welcome status in database:', error);
+        console.log('Using localStorage fallback - modal will not show again');
+        setShowWelcomeModal(false);
+      }
     }
   };
 
