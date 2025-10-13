@@ -111,6 +111,11 @@ function App() {
     const localStorageKey = `welcome_seen_${userId}`;
     const hasSeenInLocalStorage = localStorage.getItem(localStorageKey) === 'true';
 
+    if (hasSeenInLocalStorage) {
+      console.log('User has seen welcome (localStorage) - skipping modal');
+      setShowWelcomeModal(false);
+    }
+
     const { data: profile } = await supabase
       .from('user_profiles')
       .select('*')
@@ -121,13 +126,13 @@ function App() {
       setUserProfile(profile);
       console.log('User profile loaded:', { has_seen_welcome: profile.has_seen_welcome });
 
-      const hasSeenWelcome = profile.has_seen_welcome === true || hasSeenInLocalStorage;
+      const hasSeenWelcome = profile.has_seen_welcome === true;
 
-      if (!hasSeenWelcome) {
-        console.log('Showing welcome modal for first-time user');
+      if (!hasSeenWelcome && !hasSeenInLocalStorage) {
+        console.log('Showing welcome modal - user has not completed it yet');
         setShowWelcomeModal(true);
       } else {
-        console.log('User has already seen welcome modal');
+        console.log('User has completed welcome modal');
         setShowWelcomeModal(false);
       }
     } else {
@@ -141,6 +146,7 @@ function App() {
       if (newProfile) {
         setUserProfile(newProfile);
         if (!hasSeenInLocalStorage) {
+          console.log('New user - showing welcome modal');
           setShowWelcomeModal(true);
         }
       }
