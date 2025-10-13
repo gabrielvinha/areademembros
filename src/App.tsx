@@ -9,6 +9,7 @@ import BonusSection from './components/BonusSection';
 import MentorshipSection from './components/MentorshipSection';
 import ProsperitySection from './components/ProsperitySection';
 import FADSection from './components/FADSection';
+import WelcomeModal from './components/WelcomeModal';
 
 function App() {
   const removeFloating = () => {
@@ -28,6 +29,8 @@ function App() {
   const [prosperityUnlocked, setProsperityUnlocked] = useState(false);
   const [fadUnlocked, setFadUnlocked] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [userProfile, setUserProfile] = useState<any>(null);
 
   const handleUserUpdate = (updatedUser: any) => {
     setUser(updatedUser);
@@ -98,6 +101,30 @@ function App() {
       setProsperityUnlocked(moduleIds.includes('prosperity'));
       setFadUnlocked(moduleIds.includes('fad'));
     }
+
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle();
+
+    if (profile) {
+      setUserProfile(profile);
+      if (!profile.has_seen_welcome) {
+        setShowWelcomeModal(true);
+      }
+    } else {
+      const { data: newProfile } = await supabase
+        .from('user_profiles')
+        .insert({ id: userId, has_seen_welcome: false })
+        .select()
+        .maybeSingle();
+
+      if (newProfile) {
+        setUserProfile(newProfile);
+        setShowWelcomeModal(true);
+      }
+    }
   };
 
   const handleLogin = () => {
@@ -157,6 +184,17 @@ function App() {
     }
   };
 
+  const handleWelcomeComplete = async () => {
+    if (user) {
+      await supabase
+        .from('user_profiles')
+        .update({ has_seen_welcome: true })
+        .eq('id', user.id);
+
+      setShowWelcomeModal(false);
+    }
+  };
+
   const scrollToModules = () => {
     const modulesSection = document.getElementById('modules-section');
     modulesSection?.scrollIntoView({ behavior: 'smooth' });
@@ -176,19 +214,25 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0B0B0F] text-white">
+      {showWelcomeModal && userProfile && (
+        <WelcomeModal
+          userName={userProfile.name || user?.email?.split('@')[0] || 'Membro'}
+          onComplete={handleWelcomeComplete}
+        />
+      )}
       <Header user={user} onUserUpdate={handleUserUpdate} />
       <HeroSection onStartClick={scrollToModules} />
       <ModulesSection unlockedModules={unlockedModules} onUnlock={unlockModule} />
-      <FADSection 
-        isUnlocked={fadUnlocked} 
-        onUnlock={unlockFAD} 
+      <FADSection
+        isUnlocked={fadUnlocked}
+        onUnlock={unlockFAD}
       />
       <CommunitySection />
       <BonusSection user={user} />
       <MentorshipSection />
-      <ProsperitySection 
-        isUnlocked={prosperityUnlocked} 
-        onUnlock={unlockProsperity} 
+      <ProsperitySection
+        isUnlocked={prosperityUnlocked}
+        onUnlock={unlockProsperity}
       />
     </div>
   );
