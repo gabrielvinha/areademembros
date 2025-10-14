@@ -29,7 +29,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       image: 'https://i.postimg.cc/qqjJF46s/image.png',
       isLocked: !unlockedModules.has('module2'),
       password: '2025',
-      checkoutUrl: 'https://checkoutmodulo2.com',
+      checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
     {
       id: 'module3',
@@ -38,7 +38,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       isLocked: !unlockedModules.has('module3'),
       comingSoon: true,
       password: '2026',
-      checkoutUrl: 'https://checkoutmodulo3.com',
+      checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
   ];
 
