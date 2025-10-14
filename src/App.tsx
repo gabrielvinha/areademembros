@@ -101,12 +101,31 @@ function App() {
       .select('module_id')
       .eq('user_id', userId);
 
-    if (modules) {
-      const moduleIds = modules.map(m => m.module_id);
-      setUnlockedModules(new Set(['module1', ...moduleIds]));
-      setProsperityUnlocked(moduleIds.includes('prosperity'));
-      setFadUnlocked(moduleIds.includes('fad'));
+    let moduleIds = modules ? modules.map(m => m.module_id) : [];
+
+    const { data: { user: authUser } } = await supabase.auth.getUser();
+    if (authUser?.created_at) {
+      const accountCreatedAt = new Date(authUser.created_at);
+      const now = new Date();
+      const daysSinceCreation = Math.floor((now.getTime() - accountCreatedAt.getTime()) / (1000 * 60 * 60 * 24));
+
+      if (daysSinceCreation >= 10 && !moduleIds.includes('module2')) {
+        console.log('Auto-unlocking module 2 - account is', daysSinceCreation, 'days old');
+        await supabase
+          .from('user_modules')
+          .upsert({
+            user_id: userId,
+            module_id: 'module2',
+          }, {
+            onConflict: 'user_id,module_id'
+          });
+        moduleIds.push('module2');
+      }
     }
+
+    setUnlockedModules(new Set(['module1', ...moduleIds]));
+    setProsperityUnlocked(moduleIds.includes('prosperity'));
+    setFadUnlocked(moduleIds.includes('fad'));
 
     const localStorageKey = `welcome_seen_${userId}`;
     const hasSeenInLocalStorage = localStorage.getItem(localStorageKey) === 'true';

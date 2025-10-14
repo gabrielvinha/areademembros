@@ -28,7 +28,6 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       title: 'Módulo 2 - QUEBRA DO CICLO DA ESCASSEZ',
       image: 'https://i.postimg.cc/qqjJF46s/image.png',
       isLocked: !unlockedModules.has('module2'),
-      comingSoon: true,
       password: '2025',
       checkoutUrl: 'https://checkoutmodulo2.com',
     },
@@ -43,32 +42,60 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
     },
   ];
 
-  const lessons = [
-    {
-      id: 'lesson1',
-      title: 'Aula 1: Onde começa a frequência da Alma',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhgQz6fhmkDGyGVMgV-6HlLL3IgjVtLfEWg&s',
-      videoId: 'Pix9tqIw0_k' 
-    },
-    {
-      id: 'lesson2',
-      title: 'Aula 2: Como o corpo fala antes da mente',
-      image: 'https://wp-content.lamenteemeravigliosa.it/2023/07/mente-e-corpo-in-relazione-secondo-la-filosofia-1200x808-1.jpg',
-      videoId: 'Eq52OT_ocmY'
-    },
-    {
-      id: 'lesson3',
-      title: 'Aula 3: O Coração como Criador da Realidade',
-      image: 'https://i.redd.it/abcp6k9aayoc1.jpeg',
-      videoId: 'oi1Fk70QCgA'
-    },
-    {
-      id: 'lesson4',
-      title: 'Aula 4: A Revelação do Código Oculto do Coração',
-      image: 'https://png.pngtree.com/thumb_back/fw800/background/20220203/pngtree-love-heart-embedded-in-black-and-white-binary-computer-code-background-photo-image_15829942.jpg',
-      videoId: '8OiJKAoMjJI'
-    }
-  ];
+  const lessonsByModule: { [key: string]: any[] } = {
+    module1: [
+      {
+        id: 'lesson1',
+        title: 'Aula 1: Onde começa a frequência da Alma',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhgQz6fhmkDGyGVMgV-6HlLL3IgjVtLfEWg&s',
+        videoId: 'Pix9tqIw0_k'
+      },
+      {
+        id: 'lesson2',
+        title: 'Aula 2: Como o corpo fala antes da mente',
+        image: 'https://wp-content.lamenteemeravigliosa.it/2023/07/mente-e-corpo-in-relazione-secondo-la-filosofia-1200x808-1.jpg',
+        videoId: 'Eq52OT_ocmY'
+      },
+      {
+        id: 'lesson3',
+        title: 'Aula 3: O Coração como Criador da Realidade',
+        image: 'https://i.redd.it/abcp6k9aayoc1.jpeg',
+        videoId: 'oi1Fk70QCgA'
+      },
+      {
+        id: 'lesson4',
+        title: 'Aula 4: A Revelação do Código Oculto do Coração',
+        image: 'https://png.pngtree.com/thumb_back/fw800/background/20220203/pngtree-love-heart-embedded-in-black-and-white-binary-computer-code-background-photo-image_15829942.jpg',
+        videoId: '8OiJKAoMjJI'
+      }
+    ],
+    module2: [
+      {
+        id: 'module2_lesson1',
+        title: 'Aula 1',
+        image: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+        videoId: 'ucN_Shno-So'
+      },
+      {
+        id: 'module2_lesson2',
+        title: 'Aula 2',
+        image: 'https://images.pexels.com/photos/1708988/pexels-photo-1708988.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+        videoId: 'fdOUhBw0W_E'
+      },
+      {
+        id: 'module2_lesson3',
+        title: 'Aula 3',
+        image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+        videoId: 'M9OnhqaV28Y'
+      },
+      {
+        id: 'module2_lesson4',
+        title: 'Aula 4',
+        image: 'https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+        videoId: 'RieZ2Hmfpl4'
+      }
+    ]
+  };
 
   const handleModuleClick = (module: any) => {
     if (module.comingSoon) {
@@ -125,14 +152,14 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
               {modules.find(m => m.id === selectedModule)?.title}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {lessons.map((lesson) => (
+              {(lessonsByModule[selectedModule] || []).map((lesson) => (
                 <div
                   key={lesson.id}
                   className="bg-white/10 rounded-lg p-4 cursor-pointer hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
                   onClick={() => setSelectedLesson(lesson.id)}
                 >
-                  <img 
-                    src={lesson.image} 
+                  <img
+                    src={lesson.image}
                     alt={lesson.title}
                     className="w-full h-32 object-cover rounded-lg mb-3"
                   />
@@ -145,14 +172,14 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       )}
 
       {/* Modal de Vídeo */}
-      {selectedLesson && (
+      {selectedLesson && selectedModule && (
         <Modal onClose={() => setSelectedLesson(null)}>
           <div className="p-8">
             <h3 className="text-xl font-bold text-white mb-4">
-              {lessons.find(l => l.id === selectedLesson)?.title}
+              {lessonsByModule[selectedModule]?.find(l => l.id === selectedLesson)?.title}
             </h3>
             <div className="mb-6">
-              <VideoPlayer videoId={lessons.find(l => l.id === selectedLesson)?.videoId || ''} />
+              <VideoPlayer videoId={lessonsByModule[selectedModule]?.find(l => l.id === selectedLesson)?.videoId || ''} />
             </div>
             
             <div className="flex gap-4 mt-6">
