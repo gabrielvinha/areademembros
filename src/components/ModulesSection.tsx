@@ -73,7 +73,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       {
         id: 'module2_lesson1',
         title: 'Aula 1',
-        image: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+        image: 'https://shawblindfabrics.com/images/ProductImages/500/1MAL300SHA.jpg',
         videoId: 'ucN_Shno-So'
       },
       {
