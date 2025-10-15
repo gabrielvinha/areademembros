@@ -10,6 +10,7 @@ import MentorshipSection from './components/MentorshipSection';
 import ProsperitySection from './components/ProsperitySection';
 import FADSection from './components/FADSection';
 import WelcomeModal from './components/WelcomeModal';
+import AdminPanel from './components/AdminPanel';
 
 function App() {
   const removeFloating = () => {
@@ -31,6 +32,8 @@ function App() {
   const [user, setUser] = useState<any>(null);
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [userProfile, setUserProfile] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
 
   const handleUserUpdate = (updatedUser: any) => {
     setUser(updatedUser);
@@ -104,6 +107,37 @@ function App() {
     let moduleIds = modules ? modules.map(m => m.module_id) : [];
 
     const { data: { user: authUser } } = await supabase.auth.getUser();
+
+    if (authUser?.email) {
+      const { data: whitelistEntry } = await supabase
+        .from('whitelist_access')
+        .select('modules, expires_at')
+        .eq('email', authUser.email)
+        .maybeSingle();
+
+      if (whitelistEntry) {
+        const isExpired = whitelistEntry.expires_at && new Date(whitelistEntry.expires_at) < new Date();
+
+        if (!isExpired && whitelistEntry.modules && Array.isArray(whitelistEntry.modules)) {
+          console.log('Whitelist access detected for', authUser.email, '- unlocking modules:', whitelistEntry.modules);
+
+          for (const moduleId of whitelistEntry.modules) {
+            if (!moduleIds.includes(moduleId)) {
+              await supabase
+                .from('user_modules')
+                .upsert({
+                  user_id: userId,
+                  module_id: moduleId,
+                }, {
+                  onConflict: 'user_id,module_id'
+                });
+              moduleIds.push(moduleId);
+            }
+          }
+        }
+      }
+    }
+
     if (authUser?.created_at) {
       const accountCreatedAt = new Date(authUser.created_at);
       const now = new Date();
@@ -170,6 +204,14 @@ function App() {
         }
       }
     }
+
+    const { data: adminCheck } = await supabase
+      .from('admin_users')
+      .select('id')
+      .eq('id', userId)
+      .maybeSingle();
+
+    setIsAdmin(!!adminCheck);
   };
 
   const handleLogin = () => {
@@ -280,7 +322,18 @@ function App() {
           onComplete={handleWelcomeComplete}
         />
       )}
-      <Header user={user} onUserUpdate={handleUserUpdate} />
+      {showAdminPanel && isAdmin && user && (
+        <AdminPanel
+          onClose={() => setShowAdminPanel(false)}
+          userId={user.id}
+        />
+      )}
+      <Header
+        user={user}
+        onUserUpdate={handleUserUpdate}
+        isAdmin={isAdmin}
+        onAdminClick={() => setShowAdminPanel(true)}
+      />
       <HeroSection onStartClick={scrollToModules} />
       <ModulesSection unlockedModules={unlockedModules} onUnlock={unlockModule} />
       <FADSection

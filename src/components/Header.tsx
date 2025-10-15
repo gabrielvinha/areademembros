@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { User, LogOut, ChevronDown } from 'lucide-react';
+import { User, LogOut, ChevronDown, Shield } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import AccountModal from './AccountModal';
 
 interface HeaderProps {
   user?: any;
   onUserUpdate?: (user: any) => void;
+  isAdmin?: boolean;
+  onAdminClick?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
+const Header: React.FC<HeaderProps> = ({ user, onUserUpdate, isAdmin, onAdminClick }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
 
@@ -32,6 +34,13 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
 
   const handleAccountClick = () => {
     setShowAccountModal(true);
+    setShowDropdown(false);
+  };
+
+  const handleAdminPanelClick = () => {
+    if (onAdminClick) {
+      onAdminClick();
+    }
     setShowDropdown(false);
   };
 
@@ -107,6 +116,15 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate }) => {
                 {showDropdown && (
                   <div className="absolute right-0 mt-2 w-40 sm:w-48 bg-black/90 backdrop-blur-lg rounded-lg border border-white/20 shadow-xl z-50">
                     <div className="py-2">
+                      {isAdmin && (
+                        <button
+                          onClick={handleAdminPanelClick}
+                          className="w-full flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 py-2 text-[#FFD166] hover:bg-white/10 transition-all duration-300"
+                        >
+                          <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span className="text-sm">Admin Panel</span>
+                        </button>
+                      )}
                       <button
                         onClick={handleAccountClick}
                         className="w-full flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 py-2 text-white hover:bg-white/10 transition-all duration-300"
