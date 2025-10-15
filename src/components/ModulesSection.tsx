@@ -28,7 +28,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
       title: 'Módulo 2 - QUEBRA DO CICLO DA ESCASSEZ',
       image: 'https://i.postimg.cc/qqjJF46s/image.png',
       isLocked: !unlockedModules.has('module2'),
-      password: '2025',
+      password: 'md2025',
       checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
     {

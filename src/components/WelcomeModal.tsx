@@ -40,7 +40,7 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ userName, onComplete }) => 
           <div className="flex justify-center">
             <button
               onClick={onComplete}
-              className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold text-lg px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold text-lg px-8 py-4 rounded-lg transition-all duration-30 transform hover:scale-105"
             >
               Entendi e quero começar!
             </button>
