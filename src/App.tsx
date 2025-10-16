@@ -254,7 +254,7 @@ a mudanças no DOM
       console.log('Marking welcome as seen for user:', user.id); 
 
       const localStorageKey = `welcome_seen_${user.id}`;
-      localStorage.setItem(localStorageKey, 'true');
+      localStorage.setItem(localStorageKey, 'true'); 
       console.log('Welcome status saved to localStorage');
 
       const { error } = await supabase
