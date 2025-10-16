@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from './lib/supabase';
+import { supabase, isSupabaseConfigured } from './lib/supabase';
 import Login from './components/Login';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -11,6 +11,7 @@ import ProsperitySection from './components/ProsperitySection';
 import FADSection from './components/FADSection';
 import WelcomeModal from './components/WelcomeModal';
 import AdminPanel from './components/AdminPanel';
+import { AlertCircle } from 'lucide-react';
 
 function App() {
   const removeFloating = () => {
@@ -301,6 +302,23 @@ function App() {
     const modulesSection = document.getElementById('modules-section');
     modulesSection?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  if (!isSupabaseConfigured) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-red-900/20 border border-red-500/50 rounded-lg p-6 text-center">
+          <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+          <h2 className="text-xl font-bold text-white mb-2">Erro de Configuração</h2>
+          <p className="text-gray-300 mb-4">
+            As credenciais do Supabase não estão configuradas corretamente.
+          </p>
+          <p className="text-sm text-gray-400">
+            Por favor, verifique o arquivo .env e certifique-se de que as variáveis VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY estão configuradas corretamente.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
