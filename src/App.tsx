@@ -249,26 +249,31 @@ a mudanças no DOM
     }
   };
 
- const handleWelcomeComplete = async () => {
-  if (!user) return;
+  const handleWelcomeComplete = async () => {
+    if (user && userProfile) {
+      console.log('Marking welcome as seen for user:', user.id); 
 
-  const localStorageKey = `welcome_seen_${user.id}`;
-  localStorage.setItem(localStorageKey, 'true'); // fallback local
+      const localStorageKey = `welcome_seen_${user.id}`;
+      localStorage.setItem(localStorageKey, 'true');
+      console.log('Welcome status saved to localStorage');
 
-  const { error } = await supabase
-    .from('user_profiles')
-    .upsert(
-      { id: user.id, has_seen_welcome: true },
-      { onConflict: 'id' }
-    );
+      const { error } = await supabase
+        .from('user_profiles')
+        .update({ has_seen_welcome: true })
+        .eq('id', user.id);
 
-  if (error) {
-    console.error('[WelcomeComplete] upsert error:', error);
-  }
-
-  setUserProfile(prev => ({ ...(prev || {}), has_seen_welcome: true }));
-  setShowWelcomeModal(false);
-};
+      if (!error) {
+        console.log('Welcome status updated successfully in database');
+        setUserProfile({ ...userProfile, has_seen_welcome: true });
+        setShowWelcomeModal(false);
+        console.log('Modal closed, user profile state updated');
+      } else {
+        console.error('Error updating welcome status in database:', error);
+        console.log('Using localStorage fallback - modal will not show again');
+        setShowWelcomeModal(false);
+      }
+    }
+  };
 
   const scrollToModules = () => {
     const modulesSection = document.getElementById('modules-section');
