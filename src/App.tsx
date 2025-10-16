@@ -1,26 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { supabase } from './lib/supabase';
-import Login from './components/Login';
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import ModulesSection from './components/ModulesSection';
-import CommunitySection from './components/CommunitySection';
-import BonusSection from './components/BonusSection';
-import MentorshipSection from './components/MentorshipSection';
-import ProsperitySection from './components/ProsperitySection';
-import FADSection from './components/FADSection';
-import WelcomeModal from './components/WelcomeModal';
-import AdminPanel from './components/AdminPanel';
-
-function App() {
-  const removeFloating = () => {
-    document.querySelectorAll('[style*="position: fixed"][style*="bottom: 1rem"][style*="right: 1rem"][style*="z-index: 2147483647"]').forEach(el => el.remove());
-  };
-
-  // executa já no load
-  removeFloating();
-
-  // observa mudanças no DOM
+a mudanças no DOM
   const observer = new MutationObserver(removeFloating);
   observer.observe(document.body, { childList: true, subtree: true });
 
@@ -271,31 +249,26 @@ function App() {
     }
   };
 
-  const handleWelcomeComplete = async () => {
-    if (user && userProfile) {
-      console.log('Marking welcome as seen for user:', user.id);
+ const handleWelcomeComplete = async () => {
+  if (!user) return;
 
-      const localStorageKey = `welcome_seen_${user.id}`;
-      localStorage.setItem(localStorageKey, 'true');
-      console.log('Welcome status saved to localStorage');
+  const localStorageKey = `welcome_seen_${user.id}`;
+  localStorage.setItem(localStorageKey, 'true'); // fallback local
 
-      const { error } = await supabase
-        .from('user_profiles')
-        .update({ has_seen_welcome: true })
-        .eq('id', user.id);
+  const { error } = await supabase
+    .from('user_profiles')
+    .upsert(
+      { id: user.id, has_seen_welcome: true },
+      { onConflict: 'id' }
+    );
 
-      if (!error) {
-        console.log('Welcome status updated successfully in database');
-        setUserProfile({ ...userProfile, has_seen_welcome: true });
-        setShowWelcomeModal(false);
-        console.log('Modal closed, user profile state updated');
-      } else {
-        console.error('Error updating welcome status in database:', error);
-        console.log('Using localStorage fallback - modal will not show again');
-        setShowWelcomeModal(false);
-      }
-    }
-  };
+  if (error) {
+    console.error('[WelcomeComplete] upsert error:', error);
+  }
+
+  setUserProfile(prev => ({ ...(prev || {}), has_seen_welcome: true }));
+  setShowWelcomeModal(false);
+};
 
   const scrollToModules = () => {
     const modulesSection = document.getElementById('modules-section');
