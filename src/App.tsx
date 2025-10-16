@@ -150,6 +150,8 @@ function App() {
 const UNLOCK_DAYS = 2; // 👈 use o MESMO valor nas duas regras
 const remaining = Math.max(0, UNLOCK_DAYS - daysSinceCreation);
 setDaysRemaining(remaining);
+  console.log('[daysRemaining]', remaining);
+
 
 if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
   console.log('Auto-unlocking module 2 - account is', daysSinceCreation, 'days old');
