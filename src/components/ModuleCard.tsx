@@ -16,6 +16,12 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingS
     <div
       className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105 w-full" 
       onClick={onClick}
+      {typeof daysRemaining === 'number' && (
+  <div className="absolute top-2 right-2 bg-black/80 text-white text-[10px] px-2 py-1 rounded">
+    DR:{daysRemaining}
+  </div>
+)}
+
     >
       <div className="aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-transparent to-black/80">
         <img
