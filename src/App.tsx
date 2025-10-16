@@ -146,21 +146,24 @@ function App() {
       const accountCreatedAt = new Date(authUser.created_at);
       const now = new Date();
       const daysSinceCreation = Math.floor((now.getTime() - accountCreatedAt.getTime()) / (1000 * 60 * 60 * 24));
-      const daysRemaining = Math.max(0, 10 - daysSinceCreation);
-      setDaysRemaining(daysRemaining);
 
-      if (daysSinceCreation >= 2 && !moduleIds.includes('module2')) {
-        console.log('Auto-unlocking module 2 - account is', daysSinceCreation, 'days old');
-        await supabase
-          .from('user_modules')
-          .upsert({
-            user_id: userId,
-            module_id: 'module2',
-          }, {
-            onConflict: 'user_id,module_id'
-          });
-        moduleIds.push('module2');
-      }
+const UNLOCK_DAYS = 2; // 👈 use o MESMO valor nas duas regras
+const remaining = Math.max(0, UNLOCK_DAYS - daysSinceCreation);
+setDaysRemaining(remaining);
+
+if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
+  console.log('Auto-unlocking module 2 - account is', daysSinceCreation, 'days old');
+  await supabase
+    .from('user_modules')
+    .upsert({
+      user_id: userId,
+      module_id: 'module2',
+    }, {
+      onConflict: 'user_id,module_id'
+    });
+  moduleIds.push('module2');
+}
+
     }
 
     setUnlockedModules(new Set(['module1', ...moduleIds]));
