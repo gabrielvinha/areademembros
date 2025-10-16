@@ -144,7 +144,7 @@ function App() {
       const now = new Date();
       const daysSinceCreation = Math.floor((now.getTime() - accountCreatedAt.getTime()) / (1000 * 60 * 60 * 24));
 
-      if (daysSinceCreation >= 3 && !moduleIds.includes('module2')) {
+      if (daysSinceCreation >= 2 && !moduleIds.includes('module2')) {
         console.log('Auto-unlocking module 2 - account is', daysSinceCreation, 'days old');
         await supabase
           .from('user_modules')
