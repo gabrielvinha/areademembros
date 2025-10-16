@@ -11,7 +11,7 @@ interface ModulesSectionProps {
 
 }
 
-const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock }) => {
+  const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock, daysRemaining = 0 }) => {
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
   const [showUnlockModal, setShowUnlockModal] = useState<string | null>(null);
