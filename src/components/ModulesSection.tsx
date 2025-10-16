@@ -178,16 +178,10 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlo
             <h3 className="text-xl font-bold text-white mb-4">
               {lessonsByModule[selectedModule]?.find(l => l.id === selectedLesson)?.title}
             </h3>
-<div className="mb-6 w-full">
-  <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-    <div className="absolute top-0 left-0 w-full h-full rounded-lg overflow-hidden">
-      <VideoPlayer
-        videoId={lessonsByModule[selectedModule]?.find(l => l.id === selectedLesson)?.videoId || ''}
-      />
-    </div>
-  </div>
-</div>
-            
+            <div className="mb-6">
+              <VideoPlayer videoId={lessonsByModule[selectedModule]?.find(l => l.id === selectedLesson)?.videoId || ''} />
+            </div>
+             
           </div>
         </Modal>
       )}
