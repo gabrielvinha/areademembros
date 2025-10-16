@@ -7,6 +7,7 @@ interface ModuleCardProps {
   isLocked?: boolean;
   comingSoon?: boolean;
   onClick: () => void;
+  daysRemaining?: number;
 }
 
 const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingSoon, onClick }) => {
