@@ -1,4 +1,26 @@
-a mudanças no DOM
+import React, { useState, useEffect } from 'react';
+import { supabase } from './lib/supabase';
+import Login from './components/Login';
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import ModulesSection from './components/ModulesSection';
+import CommunitySection from './components/CommunitySection';
+import BonusSection from './components/BonusSection';
+import MentorshipSection from './components/MentorshipSection';
+import ProsperitySection from './components/ProsperitySection';
+import FADSection from './components/FADSection';
+import WelcomeModal from './components/WelcomeModal';
+import AdminPanel from './components/AdminPanel';
+
+function App() {
+  const removeFloating = () => {
+    document.querySelectorAll('[style*="position: fixed"][style*="bottom: 1rem"][style*="right: 1rem"][style*="z-index: 2147483647"]').forEach(el => el.remove());
+  };
+
+  // executa já no load
+  removeFloating();
+
+  // observa mudanças no DOM
   const observer = new MutationObserver(removeFloating);
   observer.observe(document.body, { childList: true, subtree: true });
 
@@ -251,10 +273,10 @@ a mudanças no DOM
 
   const handleWelcomeComplete = async () => {
     if (user && userProfile) {
-      console.log('Marking welcome as seen for user:', user.id); 
+      console.log('Marking welcome as seen for user:', user.id);
 
       const localStorageKey = `welcome_seen_${user.id}`;
-      localStorage.setItem(localStorageKey, 'true'); 
+      localStorage.setItem(localStorageKey, 'true');
       console.log('Welcome status saved to localStorage');
 
       const { error } = await supabase
