@@ -148,8 +148,6 @@ function App() {
       const daysSinceCreation = Math.floor((now.getTime() - accountCreatedAt.getTime()) / (1000 * 60 * 60 * 24));
       const daysRemaining = Math.max(0, 10 - daysSinceCreation);
       setDaysRemaining(daysRemaining);
-       const daysRemainingCalc = Math.max(0, 10 - daysSinceCreation);
-       setDaysRemaining(daysRemainingCalc);
 
       if (daysSinceCreation >= 2 && !moduleIds.includes('module2')) {
         console.log('Auto-unlocking module 2 - account is', daysSinceCreation, 'days old');
@@ -360,7 +358,12 @@ function App() {
         onAdminClick={() => setShowAdminPanel(true)}
       />
       <HeroSection onStartClick={scrollToModules} />
-      <ModulesSection unlockedModules={unlockedModules} onUnlock={unlockModule} />
+      <ModulesSection
+  unlockedModules={unlockedModules}
+  onUnlock={unlockModule}
+  daysRemaining={daysRemaining}
+/>
+
       <FADSection
         isUnlocked={fadUnlocked}
         onUnlock={unlockFAD}
