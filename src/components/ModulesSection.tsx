@@ -7,6 +7,8 @@ import { Lock } from 'lucide-react';
 interface ModulesSectionProps {
   unlockedModules: Set<string>;
   onUnlock: (moduleId: string) => void;
+  daysRemaining?: number; const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock, daysRemaining = 0 }) => {
+
 }
 
 const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock }) => {
