@@ -30,7 +30,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       src: 'https://i.ibb.co/b5jbV4Fn/Banner-Escrit-rio-3.png',
       alt: 'Bônus 3: Escritório Mental',
       title: 'Bônus 3: Escritório Mental',
-      url: 'https://www.miniatura3.com',
+      url: 'https://archive.org/download/mapa-da-prosperidade-silenciosa/Escritorio-da-Abundancia.pdf',
       unlockDays: 9
     },
     {
@@ -38,7 +38,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       src: 'https://i.ibb.co/dwLYL5Cg/Banner-Mapa-4.png',
       alt: 'Bônus 4: Mapa da Prosperidade',
       title: 'Bônus 4: Mapa da Prosperidade',
-      url: 'https://www.miniatura4.com',
+      url: 'https://archive.org/download/mapa-da-prosperidade-silenciosa/Mapa-da-Prosperidade-Silenciosa.pdf',
       unlockDays: 12
     },
     {
@@ -46,7 +46,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       src: 'https://i.ibb.co/v6hs9KD6/Banner-Manual-5.png',
       alt: 'Bônus 5: Manual da Reprogramação',
       title: 'Bônus 5: Manual da Reprogramação',
-      url: 'https://www.miniatura5.com',
+      url: 'https://archive.org/download/mapa-da-prosperidade-silenciosa/Manual-da-Reprogramacao-Instantanea.pdf',
       unlockDays: 15
     },
     {
