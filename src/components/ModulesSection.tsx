@@ -135,16 +135,13 @@ interface ModulesSectionProps {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {modules.map((module) => (
             <ModuleCard
-              <ModuleCard
-  key={module.id}
-  title={module.title}
-  image={module.image}
-  isLocked={module.isLocked}
-  comingSoon={module.comingSoon}
-  onClick={() => handleModuleClick(module)}
-  daysRemaining={module.id === 'module2' ? daysRemaining : undefined}
-/>
-
+              key={module.id}
+              title={module.title}
+              image={module.image}
+              isLocked={module.isLocked}
+              comingSoon={module.comingSoon}
+              onClick={() => handleModuleClick(module)}
+            /> 
           ))}
         </div>
       </div>
