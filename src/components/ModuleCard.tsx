@@ -10,7 +10,8 @@ interface ModuleCardProps {
   daysRemaining?: number;
 }
 
-const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingSoon, onClick }) => {
+const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingSoon, onClick, daysRemaining }) => {
+
   return (
     <div
       className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105 w-full"
