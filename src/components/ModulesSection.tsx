@@ -141,6 +141,7 @@ interface ModulesSectionProps {
               isLocked={module.isLocked}
               comingSoon={module.comingSoon}
               onClick={() => handleModuleClick(module)}
+              daysRemaining={module.id === 'module2' ? daysRemaining : undefined}
             /> 
           ))}
         </div>
