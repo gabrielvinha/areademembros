@@ -1,21 +1,15 @@
-import React from 'react';
+type Props = { videoId: string };
 
-interface VideoPlayerProps {
-  videoId: string;
-}
-
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId }) => {
+export default function VideoPlayer({ videoId }: Props) {
   return (
-    <div className="relative aspect-video rounded-lg overflow-hidden bg-black shadow-2xl">
+    <div className="relative w-full aspect-video rounded-xl overflow-hidden">
       <iframe
-        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0`}
-        title="Video Player"
-        className="w-full h-full border-0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+        title="YouTube video"
+        className="absolute inset-0 w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       />
-    </div> 
+    </div>
   );
-};
-
-export default VideoPlayer;
+}
