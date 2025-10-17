@@ -15,7 +15,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       alt: 'Bônus 1: Detox da Escassez',
       title: 'Bônus 1: Detox da Escassez',
       url: 'https://archive.org/download/detox-da-escassez/Detox-da-Escassez.pdf',
-      unlockDays: 3
+      unlockDays: 1
     },
     {
       id: 'bonus2',
@@ -23,7 +23,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       alt: 'Bônus 2: Prosperidade Silenciosa',
       title: 'Bônus 2: Prosperidade Silenciosa',
       url: 'https://archive.org/download/codigos-secretos-da-prosperidade/Codigos-Secretos-da-Prosperidade.pdf',
-      unlockDays: 6
+      unlockDays: 3
     },
     {
       id: 'bonus3',
@@ -31,7 +31,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       alt: 'Bônus 3: Escritório Mental',
       title: 'Bônus 3: Escritório Mental',
       url: 'https://archive.org/download/mapa-da-prosperidade-silenciosa/Escritorio-da-Abundancia.pdf',
-      unlockDays: 9
+      unlockDays: 5
     },
     {
       id: 'bonus4',
@@ -39,7 +39,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       alt: 'Bônus 4: Mapa da Prosperidade',
       title: 'Bônus 4: Mapa da Prosperidade',
       url: 'https://archive.org/download/mapa-da-prosperidade-silenciosa/Mapa-da-Prosperidade-Silenciosa.pdf',
-      unlockDays: 12
+      unlockDays: 7
     },
     {
       id: 'bonus5',
@@ -47,7 +47,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       alt: 'Bônus 5: Manual da Reprogramação',
       title: 'Bônus 5: Manual da Reprogramação',
       url: 'https://archive.org/download/mapa-da-prosperidade-silenciosa/Manual-da-Reprogramacao-Instantanea.pdf',
-      unlockDays: 15
+      unlockDays: 9
     },
     {
       id: 'bonus6',
@@ -55,7 +55,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       alt: 'Bônus 6: Código Secreto',
       title: 'Bônus 6: Código Secreto',
       url: 'https://www.miniatura6.com',
-      unlockDays: 18
+      unlockDays: 11
     }
   ];
 
