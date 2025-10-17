@@ -14,7 +14,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
       src: 'https://i.ibb.co/jZvkpTcY/Banner-Detox-1.png',
       alt: 'Bônus 1: Detox da Escassez',
       title: 'Bônus 1: Detox da Escassez',
-      url: 'https://archive.org/details/detox-da-escassez',
+      url: 'https://archive.org/download/detox-da-escassez/Detox-da-Escassez.pdf',
       unlockDays: 3
     },
     {
