@@ -36,7 +36,7 @@ interface ModulesSectionProps {
     {
       id: 'module3',
       title: 'Módulo 3 - MANIFESTAÇÃO SOB DEMANDA', 
-      image: 'https://i.ibb.co/svwj004m/Chat-GPT-Image-22-de-out-de-2025-17-17-38.png',
+      image: 'https://i.ibb.co/W7F93WK/modulo3.png',
       
       checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
