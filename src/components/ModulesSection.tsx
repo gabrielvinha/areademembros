@@ -99,7 +99,7 @@ interface ModulesSectionProps {
       {
         id: 'module3_lesson1',
         title: 'Aula 1',
-        image: 'https://i.ibb.co/8DLkKV17/image.png',
+        image: 'https://i.ibb.co/kggTQNVM/img-a4.png',
         videoId: '_kht_vnZ8fc'
       },
       {
