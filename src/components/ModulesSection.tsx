@@ -38,7 +38,6 @@ interface ModulesSectionProps {
       title: 'Módulo 3 - MANIFESTAÇÃO SOB DEMANDA', 
       image: 'https://i.postimg.cc/qBZW1Nzm/image.png',
       isLocked: !unlockedModules.has('module3'),
-      comingSoon: true,
       password: '2026',
       checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
