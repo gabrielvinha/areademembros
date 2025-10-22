@@ -47,7 +47,7 @@ interface ModulesSectionProps {
       {
         id: 'lesson1',
         title: 'Aula 1: Onde começa a frequência da Alma',
-        image: 'https://i.ibb.co/8DLkKV17/image.png',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhgQz6fhmkDGyGVMgV-6HlLL3IgjVtLfEWg&s', 
         videoId: 'Pix9tqIw0_k'
       },
       {
