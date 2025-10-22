@@ -36,7 +36,7 @@ interface ModulesSectionProps {
     {
       id: 'module3',
       title: 'Módulo 3 - O Poder Oculto do Silêncio Estratégico', 
-      image: 'https://i.ibb.co/W7F93WK/modulo3.png',
+      image: 'https://i.ibb.co/VW8TBDw8/modulo-3-1.png',
       
       checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
