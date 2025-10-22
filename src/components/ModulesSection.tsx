@@ -35,7 +35,7 @@ interface ModulesSectionProps {
     },
     {
       id: 'module3',
-      title: 'Módulo 3 - MANIFESTAÇÃO SOB DEMANDA', 
+      title: 'Módulo 3 - Frequência anti-ética', 
       image: 'https://i.ibb.co/W7F93WK/modulo3.png',
       
       checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
