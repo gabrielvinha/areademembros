@@ -105,7 +105,7 @@ interface ModulesSectionProps {
       {
         id: 'module3_lesson2',
         title: 'Aula 2',
-        image: 'https://shawblindfabrics.com/images/ProductImages/500/1MAL300SHA.jpg',
+        image: 'https://i.ibb.co/BKcphZ53/img-a1.png',
         videoId: 'HjS6XucXNBE'
       },
       {
