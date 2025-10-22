@@ -35,7 +35,7 @@ interface ModulesSectionProps {
     },
     {
       id: 'module3',
-      title: 'Módulo 3 - MANIFESTAÇÃO SOB DEMANDA',
+      title: 'Módulo 3 - Frequência anti-ética',
       image: 'https://i.postimg.cc/qBZW1Nzm/image.png',
       isLocked: !unlockedModules.has('module3'),
       comingSoon: true,
@@ -92,6 +92,31 @@ interface ModulesSectionProps {
       },
       {
         id: 'module2_lesson4',
+        title: 'Aula 4',
+        image: 'https://shawblindfabrics.com/images/ProductImages/500/1MAL300SHA.jpg',
+        videoId: 'RieZ2Hmfpl4'
+      },
+    module3: [
+      {
+        id: 'module3_lesson1',
+        title: 'Aula 1',
+        image: 'https://shawblindfabrics.com/images/ProductImages/500/1MAL300SHA.jpg',
+        videoId: 'ucN_Shno-So'
+      },
+      {
+        id: 'module3_lesson2',
+        title: 'Aula 2',
+        image: 'https://shawblindfabrics.com/images/ProductImages/500/1MAL300SHA.jpg',
+        videoId: 'fdOUhBw0W_E'
+      },
+      {
+        id: 'module3_lesson3',
+        title: 'Aula 3',
+        image: 'https://shawblindfabrics.com/images/ProductImages/500/1MAL300SHA.jpg',
+        videoId: 'M9OnhqaV28Y'
+      },
+      {
+        id: 'module3_lesson4',
         title: 'Aula 4',
         image: 'https://shawblindfabrics.com/images/ProductImages/500/1MAL300SHA.jpg',
         videoId: 'RieZ2Hmfpl4'
