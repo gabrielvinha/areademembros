@@ -26,7 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     <>
       <button
         onClick={onToggle}
-        className="fixed top-20 left-4 z-50 bg-[#FFD166] text-black p-3 rounded-lg shadow-lg hover:bg-[#FFB833] transition-all duration-300"
+        className="fixed top-20 left-4 z-50 bg-[#d4250b] text-black p-3 rounded-lg shadow-lg hover:bg-[#FFB833] transition-all duration-300"
         aria-label="Toggle menu"
       >
         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
