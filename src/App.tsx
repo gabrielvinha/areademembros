@@ -12,6 +12,7 @@ import ProsperitySection from './components/ProsperitySection';
 import FADSection from './components/FADSection';
 import WelcomeModal from './components/WelcomeModal';
 import AdminPanel from './components/AdminPanel';
+import PromotionModal from './components/PromotionModal';
 import { AlertCircle } from 'lucide-react';
 
 
@@ -39,6 +40,7 @@ function App() {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [daysRemaining, setDaysRemaining] = useState<number>(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showPromotionModal, setShowPromotionModal] = useState(false);
 
 
   const handleUserUpdate = (updatedUser: any) => {
@@ -225,6 +227,15 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
       .maybeSingle();
 
     setIsAdmin(!!adminCheck);
+
+    const promotionSeenKey = `promotion_seen_${userId}`;
+    const hasSeenPromotion = localStorage.getItem(promotionSeenKey) === 'true';
+
+    if (!hasSeenPromotion) {
+      setTimeout(() => {
+        setShowPromotionModal(true);
+      }, 5000);
+    }
   };
 
   const handleLogin = () => {
@@ -315,6 +326,28 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
     modulesSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handlePromotionClose = () => {
+    if (user) {
+      const promotionSeenKey = `promotion_seen_${user.id}`;
+      localStorage.setItem(promotionSeenKey, 'true');
+    }
+    setShowPromotionModal(false);
+  };
+
+  const handleViewChallenge = () => {
+    handlePromotionClose();
+    const mentorshipSection = document.getElementById('mentorship-section');
+    if (mentorshipSection) {
+      mentorshipSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const mentorship3Card = document.querySelector('[data-mentorship="mentorship3"]');
+        if (mentorship3Card) {
+          (mentorship3Card as HTMLElement).click();
+        }
+      }, 500);
+    }
+  };
+
   if (!isSupabaseConfigured) {
     return (
       <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center p-4">
@@ -352,6 +385,12 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
           onComplete={handleWelcomeComplete}
         />
       )}
+      {showPromotionModal && (
+        <PromotionModal
+          onClose={handlePromotionClose}
+          onViewChallenge={handleViewChallenge}
+        />
+      )}
       {showAdminPanel && isAdmin && user && (
         <AdminPanel
           onClose={() => setShowAdminPanel(false)}
@@ -363,6 +402,7 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
         onUserUpdate={handleUserUpdate}
         isAdmin={isAdmin}
         onAdminClick={() => setShowAdminPanel(true)}
+        onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
       />
       <Sidebar
         isOpen={sidebarOpen}

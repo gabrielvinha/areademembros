@@ -29,7 +29,7 @@ const MentorshipSection: React.FC = () => {
       image: 'https://i.ibb.co/JF7Sg295/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-5.png',
       videoId: '_EziY6n19R8',
       ctaText: 'Garantir minha vaga',
-      url: 'https://pay.cakto.com.br/3a5hp6s'
+      url: 'https://www.ggcheckout.com/checkout/v2/rEFCDIMwkttBfTIiEZR1'
     }
   ];
 
@@ -48,6 +48,7 @@ const MentorshipSection: React.FC = () => {
           {mentorships.map((mentorship) => (
             <div
               key={mentorship.id}
+              data-mentorship={mentorship.id}
               onClick={() => handleMentorshipClick(mentorship.id)}
               className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
             >
@@ -86,15 +87,7 @@ const MentorshipSection: React.FC = () => {
             </h3>
             <VideoPlayer videoId={selectedMentorshipData.videoId} />
             
-            <div className="flex gap-4 mt-6">
-              <a
-                href="https://wa.me/554896931732"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
-              >
-                Falar no WhatsApp
-              </a>
+            <div className="flex justify-center mt-6">
               <a
                 href={selectedMentorshipData.url}
                 target="_blank"

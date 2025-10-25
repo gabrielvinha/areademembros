@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, LogOut, ChevronDown, Shield } from 'lucide-react';
+import { User, LogOut, ChevronDown, Shield, Menu } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import AccountModal from './AccountModal';
 
@@ -8,9 +8,10 @@ interface HeaderProps {
   onUserUpdate?: (user: any) => void;
   isAdmin?: boolean;
   onAdminClick?: () => void;
+  onToggleSidebar?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ user, onUserUpdate, isAdmin, onAdminClick }) => {
+const Header: React.FC<HeaderProps> = ({ user, onUserUpdate, isAdmin, onAdminClick, onToggleSidebar }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
 
@@ -80,10 +81,19 @@ const Header: React.FC<HeaderProps> = ({ user, onUserUpdate, isAdmin, onAdminCli
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-4">
+              {onToggleSidebar && (
+                <button
+                  onClick={onToggleSidebar}
+                  className="p-2 hover:bg-white/10 rounded-lg transition-all duration-300"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className="w-5 h-5 text-[#FFD166]" />
+                </button>
+              )}
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-[#FFD166] rounded-xl flex items-center justify-center">
-                <img 
-                  src="https://i.ibb.co/RtzWx4q/logo-andressa.png" 
-                  alt="Logo" 
+                <img
+                  src="https://i.ibb.co/RtzWx4q/logo-andressa.png"
+                  alt="Logo"
                   className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg object-cover"
                 />
               </div>
