@@ -83,7 +83,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </nav>
 
           <div className="p-6 border-t border-white/10">
-            <div className="bg-gradient-to-r from-[#d4250b]/20 to-purple-500/20 rounded-lg p-4">
+            <div className="bg-gradient-to-r from-[#d4250b]/20 to-[#d4250b]/40 rounded-lg p-4">
               <p className="text-xs text-gray-300 text-center">
                 Explore todas as seções e desbloqueie seu potencial
               </p>
