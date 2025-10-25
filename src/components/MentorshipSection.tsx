@@ -29,7 +29,7 @@ const MentorshipSection: React.FC = () => {
       image: 'https://i.ibb.co/JF7Sg295/Capas-Area-Franklin-2-Prancheta-1-Prancheta-1-copiar-5.png',
       videoId: '_EziY6n19R8',
       ctaText: 'Garantir minha vaga',
-      url: 'https://www.ggcheckout.com/checkout/v2/rEFCDIMwkttBfTIiEZR1'
+      url: 'https://pay.cakto.com.br/3a5hp6s'
     }
   ];
 
