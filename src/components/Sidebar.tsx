@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-white">
-                  <span className="text-[#FFD166]">F</span>requência da Alma
+                  <span className="text-[#d4250b]">F</span>requência da Alma
                 </h2>
                 <p className="text-gray-400 text-xs">Navegação</p>
               </div>
