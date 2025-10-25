@@ -234,7 +234,7 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
     if (!hasSeenPromotion) {
       setTimeout(() => {
         setShowPromotionModal(true);
-      }, 5000);
+      }, 600000);
     }
   };
 
