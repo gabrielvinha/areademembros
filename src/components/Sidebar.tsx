@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
         <div className="flex flex-col h-full">
           <div className="p-6 border-b border-white/10">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-[#FFD166] rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#d4250b] rounded-xl flex items-center justify-center">
                 <img
                   src="https://i.ibb.co/RtzWx4q/logo-andressa.png"
                   alt="Logo"
