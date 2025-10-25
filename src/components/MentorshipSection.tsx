@@ -40,7 +40,7 @@ const MentorshipSection: React.FC = () => {
   const selectedMentorshipData = mentorships.find(m => m.id === selectedMentorship);
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white/5">
+    <section id="mentorship-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white/5">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Mentorias e Ofertas</h2>
         

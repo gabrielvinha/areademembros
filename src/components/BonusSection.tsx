@@ -94,7 +94,7 @@ const BonusSection: React.FC<BonusSectionProps> = ({ user }) => {
   };
 
   return (
-    <section className="w-full bg-black py-8 sm:py-12 md:py-16 lg:py-20 px-3 sm:px-4 md:px-6">
+    <section id="bonus-section" className="w-full bg-black py-8 sm:py-12 md:py-16 lg:py-20 px-3 sm:px-4 md:px-6">
       <div className="max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl mx-auto">
         <h2 className="font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight mb-6 sm:mb-8 md:mb-12 text-center px-2">
           <span className="text-yellow-500">BÔNUS</span>

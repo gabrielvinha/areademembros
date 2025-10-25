@@ -59,7 +59,7 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white/5">
+    <section id="fad-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white/5">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 text-center px-2">FAD - Frequência da Abundância Dormindo</h2>
         <p className="text-sm sm:text-base text-gray-300 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4">

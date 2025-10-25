@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase, isSupabaseConfigured } from './lib/supabase';
 import Login from './components/Login';
 import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 import HeroSection from './components/HeroSection';
 import ModulesSection from './components/ModulesSection';
 import CommunitySection from './components/CommunitySection';
@@ -37,6 +38,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [daysRemaining, setDaysRemaining] = useState<number>(0);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
   const handleUserUpdate = (updatedUser: any) => {
@@ -361,6 +363,10 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
         onUserUpdate={handleUserUpdate}
         isAdmin={isAdmin}
         onAdminClick={() => setShowAdminPanel(true)}
+      />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onToggle={() => setSidebarOpen(!sidebarOpen)}
       />
       <HeroSection onStartClick={scrollToModules} />
       <ModulesSection
