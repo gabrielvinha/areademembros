@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                       onClick={() => handleItemClick(item)}
                       className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-all duration-300 group"
                     >
-                      <Icon className="w-5 h-5 text-[#FFD166] group-hover:scale-110 transition-transform duration-300" />
+                      <Icon className="w-5 h-5 text-[#d4250b] group-hover:scale-110 transition-transform duration-300" />
                       <span className="text-sm font-medium">{item.label}</span>
                     </button>
                   </li>
