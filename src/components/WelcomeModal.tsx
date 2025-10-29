@@ -27,9 +27,20 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ userName, onComplete }) => 
           <h3 className="text-xl sm:text-2xl text-[#FFD166] font-semibold mb-4">
             Aqui começa a sua mudança de vida!
           </h3>
-          <p className="text-gray-300 text-base sm:text-lg mb-6">
+          <p className="text-gray-300 text-base sm:text-lg mb-2">
             Veja esse vídeo curto para entender como vai funcionar nosso projeto:
           </p>
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6 text-left">
+            <div className="flex items-start gap-3">
+              <span className="text-yellow-500 text-xl">ℹ️</span>
+              <div>
+                <h4 className="text-yellow-500 font-bold mb-1 text-sm sm:text-base">Importante!</h4>
+                <p className="text-gray-300 text-xs sm:text-sm">
+                  O FAD (Frequência da Abundância Dormindo) é um <strong className="text-white">produto complementar pago à parte</strong>, não está incluído nesta área de membros. Você pode adquiri-lo separadamente se desejar.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="mb-6">

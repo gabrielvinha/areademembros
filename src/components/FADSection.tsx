@@ -62,9 +62,21 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
     <section id="fad-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white/5">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 text-center px-2">FAD - Frequência da Abundância Dormindo</h2>
-        <p className="text-sm sm:text-base text-gray-300 text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
+        <p className="text-sm sm:text-base text-gray-300 text-center mb-4 max-w-3xl mx-auto px-4">
           Reprogramação subconsciente enquanto você dorme. Transforme sua mente durante o descanso.
         </p>
+
+        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-8 sm:mb-12 max-w-3xl mx-auto">
+          <div className="flex items-start gap-3">
+            <span className="text-yellow-500 text-xl flex-shrink-0">💳</span>
+            <div>
+              <h4 className="text-yellow-500 font-bold mb-1 text-sm sm:text-base">Produto Complementar</h4>
+              <p className="text-gray-300 text-xs sm:text-sm">
+                O FAD é um <strong className="text-white">conteúdo exclusivo vendido separadamente</strong>, não está incluído na sua assinatura atual da área de membros. Para ter acesso, é necessário realizar a compra do produto específico.
+              </p>
+            </div>
+          </div>
+        </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12">
           {fadItems.map((item) => (
@@ -169,6 +181,19 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
             </div>
 
             <div className="space-y-6">
+              {/* Aviso de Produto Pago */}
+              <div className="bg-yellow-500/10 border-2 border-yellow-500/50 rounded-lg p-4 sm:p-6">
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-500 text-2xl flex-shrink-0">⚠️</span>
+                  <div>
+                    <h4 className="text-yellow-500 font-bold text-lg sm:text-xl mb-2">Produto Complementar Pago</h4>
+                    <p className="text-white text-sm sm:text-base font-semibold">
+                      O FAD - Frequência da Abundância Dormindo é um <strong>conteúdo exclusivo vendido separadamente</strong>. Ele NÃO está incluído na sua assinatura atual da área de membros.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Passo 1 */}
               <div className="bg-white/5 rounded-lg p-4 sm:p-6">
                 <div className="flex items-start gap-3 sm:gap-4">
@@ -176,9 +201,9 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
                     <span className="text-black font-bold text-lg sm:text-xl">1</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-white font-bold text-lg sm:text-xl mb-2">Já Comprou o Produto?</h3>
+                    <h3 className="text-white font-bold text-lg sm:text-xl mb-2">Já Comprou o FAD?</h3>
                     <p className="text-gray-300 text-sm sm:text-base">
-                      Se você já efetuou o pagamento, você recebeu um código de acesso no seu e-mail. Localize este código e copie-o.
+                      Se você já efetuou o pagamento do produto FAD, você recebeu um código de acesso no seu e-mail. Localize este código e copie-o.
                     </p>
                   </div>
                 </div>
@@ -222,28 +247,28 @@ const FADSection: React.FC<FADSectionProps> = ({ isUnlocked, onUnlock }) => {
                     <span className="text-black font-bold text-lg sm:text-xl">3</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-white font-bold text-lg sm:text-xl mb-2">Ainda Não Comprou?</h3>
+                    <h3 className="text-white font-bold text-lg sm:text-xl mb-2">Ainda Não Comprou o FAD?</h3>
                     <p className="text-gray-300 text-sm sm:text-base mb-4">
-                      Se você ainda não efetuou a compra, clique no botão abaixo para adquirir seu acesso:
+                      Este é um produto complementar vendido separadamente. Clique no botão abaixo para adquirir seu acesso ao FAD:
                     </p>
                     <button
                       onClick={handleCheckout}
                       className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
                     >
-                      Efetuar Compra Agora
+                      Comprar o FAD Agora
                     </button>
                   </div>
                 </div>
               </div>
 
               {/* Aviso */}
-              <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
                 <div className="flex items-start gap-3">
-                  <span className="text-yellow-500 text-xl">⚠️</span>
+                  <span className="text-blue-500 text-xl">ℹ️</span>
                   <div>
-                    <h4 className="text-yellow-500 font-bold mb-1">Atenção!</h4>
+                    <h4 className="text-blue-500 font-bold mb-1">Informação Importante</h4>
                     <p className="text-gray-300 text-sm">
-                      O código de acesso é enviado imediatamente após a confirmação do pagamento. Verifique sua caixa de entrada e também a pasta de spam.
+                      O código de acesso do FAD é enviado imediatamente após a confirmação do pagamento do produto. Verifique sua caixa de entrada e também a pasta de spam.
                     </p>
                   </div>
                 </div>
