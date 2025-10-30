@@ -20,6 +20,50 @@ import HelpButton from './components/HelpButton';
 import ExitIntentModal from './components/ExitIntentModal';
 import { AlertCircle } from 'lucide-react';
 
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean; error: Error | null }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center p-4">
+          <div className="max-w-md w-full bg-red-900/20 border border-red-500/50 rounded-lg p-6 text-center">
+            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">Erro na Aplicação</h2>
+            <p className="text-gray-300 mb-4">
+              Ocorreu um erro inesperado. Por favor, recarregue a página.
+            </p>
+            <p className="text-sm text-gray-400 mb-4">
+              {this.state.error?.message}
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold py-2 px-6 rounded-lg"
+            >
+              Recarregar Página
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -390,67 +434,69 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
   }, [user, showExitIntent]);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0F] text-white">
-      {showWelcomeModal && userProfile && (
-        <WelcomeModal
-          userName={userProfile.name || user?.email?.split('@')[0] || 'Membro'}
-          onComplete={handleWelcomeComplete}
+    <ErrorBoundary>
+      <div className="min-h-screen bg-[#0B0B0F] text-white">
+        {showWelcomeModal && userProfile && (
+          <WelcomeModal
+            userName={userProfile.name || user?.email?.split('@')[0] || 'Membro'}
+            onComplete={handleWelcomeComplete}
+          />
+        )}
+        {showPromotionModal && (
+          <PromotionModal
+            onClose={handlePromotionClose}
+            onViewChallenge={handleViewChallenge}
+          />
+        )}
+        {showExitIntent && (
+          <ExitIntentModal onClose={() => setShowExitIntent(false)} />
+        )}
+        {showAdminPanel && isAdmin && user && (
+          <AdminPanel
+            onClose={() => setShowAdminPanel(false)}
+            userId={user.id}
+          />
+        )}
+        <TopOfferBanner />
+        <Header
+          user={user}
+          onUserUpdate={handleUserUpdate}
+          isAdmin={isAdmin}
+          onAdminClick={() => setShowAdminPanel(true)}
+          onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
         />
-      )}
-      {showPromotionModal && (
-        <PromotionModal
-          onClose={handlePromotionClose}
-          onViewChallenge={handleViewChallenge}
+        <Sidebar
+          isOpen={sidebarOpen}
+          onToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-      )}
-      {showExitIntent && (
-        <ExitIntentModal onClose={() => setShowExitIntent(false)} />
-      )}
-      {showAdminPanel && isAdmin && user && (
-        <AdminPanel
-          onClose={() => setShowAdminPanel(false)}
-          userId={user.id}
+        <HeroSection onStartClick={scrollToModules} />
+        <DashboardSection
+          userName={userProfile?.name || user?.email?.split('@')[0] || 'Membro'}
+          unlockedModules={unlockedModules}
+          prosperityUnlocked={prosperityUnlocked}
+          fadUnlocked={fadUnlocked}
+          daysRemaining={daysRemaining}
         />
-      )}
-      <TopOfferBanner />
-      <Header
-        user={user}
-        onUserUpdate={handleUserUpdate}
-        isAdmin={isAdmin}
-        onAdminClick={() => setShowAdminPanel(true)}
-        onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
-      />
-      <Sidebar
-        isOpen={sidebarOpen}
-        onToggle={() => setSidebarOpen(!sidebarOpen)}
-      />
-      <HeroSection onStartClick={scrollToModules} />
-      <DashboardSection
-        userName={userProfile?.name || user?.email?.split('@')[0] || 'Membro'}
-        unlockedModules={unlockedModules}
-        prosperityUnlocked={prosperityUnlocked}
-        fadUnlocked={fadUnlocked}
-        daysRemaining={daysRemaining}
-      />
-      <RecommendedSection userName={userProfile?.name || user?.email?.split('@')[0]} />
-      <ModulesSection
-        unlockedModules={unlockedModules}
-        onUnlock={unlockModule}
-        daysRemaining={daysRemaining}
-      />
-      <FADSection
-        isUnlocked={fadUnlocked}
-        onUnlock={unlockFAD}
-      />
-      <CommunitySection />
-      <BonusSection user={user} />
-      <MentorshipSection />
-      <ProsperitySection
-        isUnlocked={prosperityUnlocked}
-        onUnlock={unlockProsperity}
-      />
-      <HelpButton />
-    </div>
+        <RecommendedSection userName={userProfile?.name || user?.email?.split('@')[0]} />
+        <ModulesSection
+          unlockedModules={unlockedModules}
+          onUnlock={unlockModule}
+          daysRemaining={daysRemaining}
+        />
+        <FADSection
+          isUnlocked={fadUnlocked}
+          onUnlock={unlockFAD}
+        />
+        <CommunitySection />
+        <BonusSection user={user} />
+        <MentorshipSection />
+        <ProsperitySection
+          isUnlocked={prosperityUnlocked}
+          onUnlock={unlockProsperity}
+        />
+        <HelpButton />
+      </div>
+    </ErrorBoundary>
   );
 }
 
