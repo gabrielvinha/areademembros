@@ -62,7 +62,39 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Increased base font size for better readability (40-55 age group) */
+body {
+  font-size: 18px;
+}
+
+/* Large friendly text and buttons for easier reading and clicking */
+.text-large-friendly {
+  font-size: 1.25rem;
+  line-height: 1.75;
+}
+
+.btn-large-friendly {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  min-height: 3.5rem;
+  font-weight: 600;
+}
+
 /* Modal backdrop blur effect */
 .modal-backdrop {
   backdrop-filter: blur(10px);
+}
+
+/* Pulse animation for attention-grabbing elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 209, 102, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 209, 102, 0.8);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }

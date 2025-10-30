@@ -13,6 +13,11 @@ import FADSection from './components/FADSection';
 import WelcomeModal from './components/WelcomeModal';
 import AdminPanel from './components/AdminPanel';
 import PromotionModal from './components/PromotionModal';
+import TopOfferBanner from './components/TopOfferBanner';
+import RecommendedSection from './components/RecommendedSection';
+import DashboardSection from './components/DashboardSection';
+import HelpButton from './components/HelpButton';
+import ExitIntentModal from './components/ExitIntentModal';
 import { AlertCircle } from 'lucide-react';
 
 
@@ -41,6 +46,7 @@ function App() {
   const [daysRemaining, setDaysRemaining] = useState<number>(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showPromotionModal, setShowPromotionModal] = useState(false);
+  const [showExitIntent, setShowExitIntent] = useState(false);
 
 
   const handleUserUpdate = (updatedUser: any) => {
@@ -234,7 +240,7 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
     if (!hasSeenPromotion) {
       setTimeout(() => {
         setShowPromotionModal(true);
-      }, 600000);
+      }, 180000);
     }
   };
 
@@ -377,6 +383,23 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
     return <Login onLogin={handleLogin} />;
   }
 
+  useEffect(() => {
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0 && !showExitIntent) {
+        const exitIntentKey = `exit_intent_seen_${user?.id}`;
+        const hasSeenExitIntent = localStorage.getItem(exitIntentKey) === 'true';
+
+        if (!hasSeenExitIntent && user) {
+          setShowExitIntent(true);
+          localStorage.setItem(exitIntentKey, 'true');
+        }
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+  }, [user, showExitIntent]);
+
   return (
     <div className="min-h-screen bg-[#0B0B0F] text-white">
       {showWelcomeModal && userProfile && (
@@ -391,12 +414,16 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
           onViewChallenge={handleViewChallenge}
         />
       )}
+      {showExitIntent && (
+        <ExitIntentModal onClose={() => setShowExitIntent(false)} />
+      )}
       {showAdminPanel && isAdmin && user && (
         <AdminPanel
           onClose={() => setShowAdminPanel(false)}
           userId={user.id}
         />
       )}
+      <TopOfferBanner />
       <Header
         user={user}
         onUserUpdate={handleUserUpdate}
@@ -409,12 +436,19 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
         onToggle={() => setSidebarOpen(!sidebarOpen)}
       />
       <HeroSection onStartClick={scrollToModules} />
+      <DashboardSection
+        userName={userProfile?.name || user?.email?.split('@')[0] || 'Membro'}
+        unlockedModules={unlockedModules}
+        prosperityUnlocked={prosperityUnlocked}
+        fadUnlocked={fadUnlocked}
+        daysRemaining={daysRemaining}
+      />
+      <RecommendedSection userName={userProfile?.name || user?.email?.split('@')[0]} />
       <ModulesSection
-  unlockedModules={unlockedModules}
-  onUnlock={unlockModule}
-  daysRemaining={daysRemaining}
-/>
-
+        unlockedModules={unlockedModules}
+        onUnlock={unlockModule}
+        daysRemaining={daysRemaining}
+      />
       <FADSection
         isUnlocked={fadUnlocked}
         onUnlock={unlockFAD}
@@ -426,6 +460,7 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
         isUnlocked={prosperityUnlocked}
         onUnlock={unlockProsperity}
       />
+      <HelpButton />
     </div>
   );
 }

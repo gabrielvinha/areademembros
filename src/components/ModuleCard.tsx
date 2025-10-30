@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock } from 'lucide-react';
+import { Lock, Star } from 'lucide-react';
 
 interface ModuleCardProps {
   title: string;
@@ -8,9 +8,10 @@ interface ModuleCardProps {
   comingSoon?: boolean;
   onClick: () => void;
   daysRemaining?: number;
+  badge?: string;
 }
 
-const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingSoon, onClick, daysRemaining }) => {
+const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingSoon, onClick, daysRemaining, badge }) => {
 
   return (
     <div
@@ -23,7 +24,16 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ title, image, isLocked, comingS
           alt={title}
           className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
         />
-        
+
+        {badge && !isLocked && !comingSoon && (
+          <div className="absolute top-4 right-4 z-10">
+            <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black px-3 py-1.5 rounded-full font-bold text-xs sm:text-sm flex items-center gap-1 shadow-lg animate-pulse">
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
+              {badge}
+            </div>
+          </div>
+        )}
+
         {/* Overlay para itens bloqueados e contador de dias */}
 {isLocked && !comingSoon && typeof daysRemaining === 'number' && daysRemaining > 0 ? (
   <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center rounded-lg">
