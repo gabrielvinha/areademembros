@@ -7,14 +7,12 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onStartClick }) => {
   const navigationItems = [
-    { id: 'home', label: 'Início', icon: Home, scrollTo: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
     { id: 'modules', label: 'Módulos', icon: BookOpen, scrollTo: () => document.getElementById('modules-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'fad', label: 'FAD', icon: Zap, scrollTo: () => document.getElementById('fad-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'community', label: 'Comunidade', icon: Users, scrollTo: () => document.getElementById('community-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'bonus', label: 'Bônus', icon: Gift, scrollTo: () => document.getElementById('bonus-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'mentorship', label: 'Mentoria', icon: Sparkles, scrollTo: () => document.getElementById('mentorship-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'recommended', label: 'Indicados', icon: Star, scrollTo: () => document.getElementById('recommended-section')?.scrollIntoView({ behavior: 'smooth' }) },
-    { id: 'prosperity', label: 'Prosperidade', icon: TrendingUp, scrollTo: () => document.getElementById('prosperity-section')?.scrollIntoView({ behavior: 'smooth' }) },
   ];
 
   return (
@@ -45,21 +43,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onStartClick }) => {
           Começar agora
         </button>
 
-        <div className="mt-12 sm:mt-16 max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 px-4">
+        <div className="mt-8 sm:mt-10 max-w-2xl mx-auto">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 px-4">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               return (
                 <button
                   key={item.id}
                   onClick={item.scrollTo}
-                  className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-[#d4250b]/50 rounded-xl p-4 sm:p-5 transition-all duration-300 hover:bg-black/60 hover:scale-105 hover:shadow-lg hover:shadow-[#d4250b]/20"
+                  className="group bg-black/20 backdrop-blur-sm border border-white/5 hover:border-[#d4250b]/30 rounded-lg p-2 sm:p-3 transition-all duration-300 hover:bg-black/30"
                 >
-                  <div className="flex flex-col items-center gap-2 sm:gap-3">
-                    <div className="bg-gradient-to-br from-[#d4250b] to-red-600 p-2.5 sm:p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <div className="flex flex-col items-center gap-1 sm:gap-1.5">
+                    <div className="bg-[#d4250b]/20 p-1.5 sm:p-2 rounded-md group-hover:bg-[#d4250b]/30 transition-colors duration-300">
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#d4250b]" />
                     </div>
-                    <span className="text-white text-xs sm:text-sm font-semibold text-center group-hover:text-[#FFD166] transition-colors duration-300">
+                    <span className="text-white/70 text-[10px] sm:text-xs font-medium text-center group-hover:text-white/90 transition-colors duration-300">
                       {item.label}
                     </span>
                   </div>
