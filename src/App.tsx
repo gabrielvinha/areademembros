@@ -8,6 +8,7 @@ import ModulesSection from './components/ModulesSection';
 import CommunitySection from './components/CommunitySection';
 import BonusSection from './components/BonusSection';
 import MentorshipSection from './components/MentorshipSection';
+import RecommendedSection from './components/RecommendedSection';
 import ProsperitySection from './components/ProsperitySection';
 import FADSection from './components/FADSection';
 import WelcomeModal from './components/WelcomeModal';
@@ -422,6 +423,9 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
       <CommunitySection />
       <BonusSection user={user} />
       <MentorshipSection />
+      <div id="recommended-section">
+        <RecommendedSection />
+      </div>
       <ProsperitySection
         isUnlocked={prosperityUnlocked}
         onUnlock={unlockProsperity}

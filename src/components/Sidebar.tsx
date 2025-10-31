@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Home, BookOpen, Users, Gift, Sparkles, TrendingUp, Zap } from 'lucide-react';
+import { Menu, X, Home, BookOpen, Users, Gift, Sparkles, TrendingUp, Zap, Star } from 'lucide-react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -14,6 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     { id: 'community', label: 'Comunidade', icon: Users, scrollTo: () => document.getElementById('community-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'bonus', label: 'Bônus', icon: Gift, scrollTo: () => document.getElementById('bonus-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'mentorship', label: 'Mentoria', icon: Sparkles, scrollTo: () => document.getElementById('mentorship-section')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'recommended', label: 'Indicados pra você', icon: Star, scrollTo: () => document.getElementById('recommended-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'prosperity', label: 'Prosperidade', icon: TrendingUp, scrollTo: () => document.getElementById('prosperity-section')?.scrollIntoView({ behavior: 'smooth' }) },
   ];
 
@@ -47,9 +48,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                 />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">
-                  <span className="text-[#d4250b]">F</span>requência da Alma
-                </h2>
                 <p className="text-gray-400 text-xs">Navegação</p>
               </div>
             </div>
