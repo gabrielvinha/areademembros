@@ -8,10 +8,10 @@ interface ModulesSectionProps {
   unlockedModules: Set<string>;
   onUnlock: (moduleId: string) => void;
   daysRemaining?: number;
-
+  daysRemainingModule4?: number;
 }
 
-  const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock, daysRemaining = 0 }) => {
+  const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock, daysRemaining = 0, daysRemainingModule4 = 0 }) => {
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
   const [showUnlockModal, setShowUnlockModal] = useState<string | null>(null);
@@ -44,8 +44,6 @@ interface ModulesSectionProps {
       title: 'Módulo 4 - O Bloqueio Invisível: quando o coração se desconecta da fonte',
       image: 'https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=800&auto=format&fit=crop',
       isLocked: !unlockedModules.has('module4'),
-      password: 'md4heart',
-      checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
   ];
 
@@ -204,7 +202,7 @@ interface ModulesSectionProps {
               isLocked={module.isLocked}
               comingSoon={module.comingSoon}
               onClick={() => handleModuleClick(module)}
-             daysRemaining={module.id === 'module2' ? daysRemaining : undefined}
+             daysRemaining={module.id === 'module2' ? daysRemaining : module.id === 'module4' ? daysRemainingModule4 : undefined}
             /> 
           ))}
         </div>
@@ -262,35 +260,46 @@ interface ModulesSectionProps {
                showUnlockModal === 'module3' ? 'Liberar acesso ao Módulo 3' :
                'Liberar acesso ao Módulo 4'}
             </h3>
-            
-            <div className="space-y-4">
-              <button
-                disabled
-                className="w-full bg-gray-600 cursor-not-allowed text-gray-400 font-bold py-3 rounded-lg opacity-50"
-              >
-                {showUnlockModal === 'module2' ? 'Liberar acesso ao Módulo 2' : 'Desbloquear agora'}
-              </button>
-              
-              <div className="border-t border-white/20 pt-4">
-                <p className="text-gray-400 mb-3">Já adquiriu? Digite o código recebido por e-mail:</p>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD166]"
-                  placeholder="Digite o código"
-                />
-                {passwordError && (
-                  <p className="text-red-400 text-sm mt-2">{passwordError}</p>
-                )}
-                <button
-                  onClick={handlePasswordSubmit}
-                  className="w-full mt-3 bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-all duration-300"
-                >
-                  Confirmar
-                </button>
+
+            {showUnlockModal === 'module4' ? (
+              <div className="space-y-4">
+                <p className="text-gray-300 mb-4">
+                  Este módulo será desbloqueado automaticamente em {daysRemainingModule4} {daysRemainingModule4 === 1 ? 'dia' : 'dias'}.
+                </p>
+                <p className="text-sm text-gray-400">
+                  Continue explorando os outros conteúdos enquanto aguarda!
+                </p>
               </div>
-            </div>
+            ) : (
+              <div className="space-y-4">
+                <button
+                  disabled
+                  className="w-full bg-gray-600 cursor-not-allowed text-gray-400 font-bold py-3 rounded-lg opacity-50"
+                >
+                  {showUnlockModal === 'module2' ? 'Liberar acesso ao Módulo 2' : 'Desbloquear agora'}
+                </button>
+
+                <div className="border-t border-white/20 pt-4">
+                  <p className="text-gray-400 mb-3">Já adquiriu? Digite o código recebido por e-mail:</p>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD166]"
+                    placeholder="Digite o código"
+                  />
+                  {passwordError && (
+                    <p className="text-red-400 text-sm mt-2">{passwordError}</p>
+                  )}
+                  <button
+                    onClick={handlePasswordSubmit}
+                    className="w-full mt-3 bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-all duration-300"
+                  >
+                    Confirmar
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </Modal>
       )}

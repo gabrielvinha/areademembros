@@ -40,6 +40,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [daysRemaining, setDaysRemaining] = useState<number>(0);
+  const [daysRemainingModule4, setDaysRemainingModule4] = useState<number>(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showPromotionModal, setShowPromotionModal] = useState(false);
 
@@ -152,13 +153,17 @@ function App() {
       const now = new Date();
       const daysSinceCreation = Math.floor((now.getTime() - accountCreatedAt.getTime()) / (1000 * 60 * 60 * 24));
 
-const UNLOCK_DAYS = 2; // 👈 use o MESMO valor nas duas regras
-const remaining = Math.max(0, UNLOCK_DAYS - daysSinceCreation);
+const UNLOCK_DAYS_MODULE2 = 2;
+const UNLOCK_DAYS_MODULE4 = 3;
+const remaining = Math.max(0, UNLOCK_DAYS_MODULE2 - daysSinceCreation);
+const remainingModule4 = Math.max(0, UNLOCK_DAYS_MODULE4 - daysSinceCreation);
 setDaysRemaining(remaining);
-  console.log('[daysRemaining]', remaining);
+setDaysRemainingModule4(remainingModule4);
+  console.log('[daysRemaining module2]', remaining);
+  console.log('[daysRemaining module4]', remainingModule4);
 
 
-if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
+if (daysSinceCreation >= UNLOCK_DAYS_MODULE2 && !moduleIds.includes('module2')) {
   console.log('Auto-unlocking module 2 - account is', daysSinceCreation, 'days old');
   await supabase
     .from('user_modules')
@@ -169,6 +174,19 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
       onConflict: 'user_id,module_id'
     });
   moduleIds.push('module2');
+}
+
+if (daysSinceCreation >= UNLOCK_DAYS_MODULE4 && !moduleIds.includes('module4')) {
+  console.log('Auto-unlocking module 4 - account is', daysSinceCreation, 'days old');
+  await supabase
+    .from('user_modules')
+    .upsert({
+      user_id: userId,
+      module_id: 'module4',
+    }, {
+      onConflict: 'user_id,module_id'
+    });
+  moduleIds.push('module4');
 }
 
     }
@@ -414,6 +432,7 @@ if (daysSinceCreation >= UNLOCK_DAYS && !moduleIds.includes('module2')) {
   unlockedModules={unlockedModules}
   onUnlock={unlockModule}
   daysRemaining={daysRemaining}
+  daysRemainingModule4={daysRemainingModule4}
 />
 
       <FADSection
