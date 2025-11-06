@@ -35,9 +35,16 @@ interface ModulesSectionProps {
     },
     {
       id: 'module3',
-      title: 'Módulo 3 - O Poder Oculto do Silêncio Estratégico', 
+      title: 'Módulo 3 - O Poder Oculto do Silêncio Estratégico',
       image: 'https://i.ibb.co/VW8TBDw8/modulo-3-1.png',
-      
+      checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
+    },
+    {
+      id: 'module4',
+      title: 'Módulo 4 - O Bloqueio Invisível: quando o coração se desconecta da fonte',
+      image: 'https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=800&auto=format&fit=crop',
+      isLocked: !unlockedModules.has('module4'),
+      password: 'md4heart',
       checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
     },
   ];
@@ -119,6 +126,38 @@ interface ModulesSectionProps {
         title: 'Aula 4',
         image: 'https://i.ibb.co/C30NhPPn/img-a3.png',
         videoId: 'JOiPQltaSm4'
+      }
+    ],
+    module4: [
+      {
+        id: 'module4_lesson1',
+        title: 'Aula 1 - Quando o coração se desconecta',
+        image: 'https://images.unsplash.com/photo-1502139214982-d0ad755818d8?w=800&auto=format&fit=crop',
+        videoId: 'GeN7afER2go'
+      },
+      {
+        id: 'module4_lesson2',
+        title: 'Aula 2 - Reconectando com a fonte',
+        image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&auto=format&fit=crop',
+        videoId: 'k1Yx3cPBgsg'
+      },
+      {
+        id: 'module4_lesson3',
+        title: 'Aula 3 - A energia do bloqueio invisível',
+        image: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?w=800&auto=format&fit=crop',
+        videoId: 'gL1t-CbdEK4'
+      },
+      {
+        id: 'module4_lesson4',
+        title: 'Aula 4 - Desbloqueando o fluxo',
+        image: 'https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&auto=format&fit=crop',
+        videoId: '8c5PnkzSbAM'
+      },
+      {
+        id: 'module4_lesson5',
+        title: 'Aula 5 - Restaurando a conexão divina',
+        image: 'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=800&auto=format&fit=crop',
+        videoId: 'CuXO6ty5D_s'
       }
     ]
   };
@@ -219,7 +258,9 @@ interface ModulesSectionProps {
           <div className="p-6 text-center">
             <Lock className="w-16 h-16 text-[#FFD166] mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-4">
-              {showUnlockModal === 'module2' ? 'Desbloqueie sua próxima fase' : 'Liberar acesso ao Módulo 3'}
+              {showUnlockModal === 'module2' ? 'Desbloqueie sua próxima fase' :
+               showUnlockModal === 'module3' ? 'Liberar acesso ao Módulo 3' :
+               'Liberar acesso ao Módulo 4'}
             </h3>
             
             <div className="space-y-4">
