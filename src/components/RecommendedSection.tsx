@@ -24,7 +24,7 @@ const RecommendedSection: React.FC = () => {
     },
     {
       title: 'Atualizações Semanais',
-      image: 'https://i.ibb.co/S4k2hMsV/att-mensail.png',
+      image: 'https://i.ibb.co/rq6R2QC/att-mensail.png',
       link: 'https://pay.cakto.com.br/4gmdcs9_620648',
       description: 'Tenha acesso antecipado a tudo o que ainda será revelado — conteúdos ocultos, segredos recém-descobertos e métodos que só os membros atualizados recebem.'
     }
