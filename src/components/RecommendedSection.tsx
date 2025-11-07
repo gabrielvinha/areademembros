@@ -18,7 +18,7 @@ const RecommendedSection: React.FC = () => {
     },
     {
       title: 'AFIRMAÇÕES QUE ATRAEM',
-      image: 'https://i.ibb.co/x8sJJg7y/Chat-GPT-Image-4-de-out-de-2025-17-27-10.png',
+      image: 'https://i.ibb.co/Vc9y3Ln9/Chat-GPT-Image-4-de-out-de-2025-17-27-10.png',
       link: 'https://pay.cakto.com.br/srm22uf',
       description: '[ ACESSO IMEDIATO ] O mesmo protocolo que ajudou mulheres comuns a desbloquear crenças de escassez e atrair prosperidade para suas vidas.'
     },
