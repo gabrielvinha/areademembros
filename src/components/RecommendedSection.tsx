@@ -12,7 +12,7 @@ const RecommendedSection: React.FC = () => {
   const products: Product[] = [
     {
       title: 'LIBERTE-SE DA ANSIEDADE EM MINUTOS',
-      image: 'https://i.ibb.co/VcWLC3tK/Chat-GPT-Image-4-de-out-de-2025-17-19-07.png',
+      image: 'https://i.ibb.co/HDGcXqWG/libertesse-da-ansiedade-logo.png',
       link: 'https://pay.cakto.com.br/3cygfwq',
       description: '[ ACESSO IMEDIATO ] Descubra 3 técnicas exclusivas de autorregulação que vão transformar ansiedade e pressão em clareza, calma e foco.'
     },
