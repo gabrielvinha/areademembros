@@ -9,6 +9,14 @@ interface AccountModalProps {
 }
 
 const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpdate }) => {
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -162,16 +170,24 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
     }
   };
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-black/90 backdrop-blur-lg rounded-xl sm:rounded-2xl border border-white/20 max-w-sm sm:max-w-lg md:max-w-2xl w-full max-h-[90vh] overflow-y-auto mx-3 sm:mx-4">
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-1.5 sm:p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300"
-        >
-          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-        </button>
+    <div className="fixed inset-0 z-50 overflow-y-auto" onClick={handleBackdropClick}>
+      <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" />
+      <div className="min-h-screen flex items-center justify-center p-3 sm:p-4">
+        <div className="relative bg-black/90 backdrop-blur-lg rounded-xl sm:rounded-2xl border border-white/20 max-w-sm sm:max-w-lg md:max-w-2xl w-full my-8 mx-3 sm:mx-4 max-h-[90vh] overflow-y-auto">
+          <button
+            onClick={onClose}
+            className="sticky top-3 right-3 sm:top-4 sm:right-4 float-right z-10 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 touch-manipulation active:scale-95"
+          >
+            <X className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+          </button>
+          <div className="clear-both">
 
         <div className="p-4 sm:p-6">
           <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center">
@@ -333,6 +349,8 @@ const AccountModal: React.FC<AccountModalProps> = ({ user, onClose, onProfileUpd
               <Save className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
               {loading ? 'Salvando...' : 'Salvar Perfil'}
             </button>
+          </div>
+        </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import VideoPlayer from './VideoPlayer';
 
 interface WelcomeModalProps {
@@ -7,9 +7,19 @@ interface WelcomeModalProps {
 }
 
 const WelcomeModal: React.FC<WelcomeModalProps> = ({ userName, onComplete }) => {
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0B0B0F] rounded-2xl p-6 sm:p-8 max-w-3xl w-full my-8">
+    <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0B0B0F] rounded-2xl p-6 sm:p-8 max-w-3xl w-full my-8 max-h-[90vh] overflow-y-auto">
         <div className="text-center mb-6">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
             Olá! {userName}
@@ -44,6 +54,7 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ userName, onComplete }) => 
           >
             Entendi e quero começar!
           </button>
+        </div>
         </div>
       </div>
     </div>

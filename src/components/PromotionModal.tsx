@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 
 interface PromotionModalProps {
@@ -7,6 +7,15 @@ interface PromotionModalProps {
 }
 
 const PromotionModal: React.FC<PromotionModalProps> = ({ onClose, onViewChallenge }) => {
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -15,10 +24,11 @@ const PromotionModal: React.FC<PromotionModalProps> = ({ onClose, onViewChalleng
 
   return (
     <div
-      className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-[60] p-4 overflow-y-auto"
+      className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[60] overflow-y-auto"
       onClick={handleBackdropClick}
     >
-      <div className="bg-black/80 rounded-2xl p-4 sm:p-6 md:p-8 max-w-lg w-full relative my-8">
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="bg-black/80 rounded-2xl p-4 sm:p-6 md:p-8 max-w-lg w-full relative my-8">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white/80 hover:text-white transition-all duration-300 z-10 bg-black/50 rounded-full p-2 sm:p-3 touch-manipulation active:scale-95"
@@ -49,6 +59,7 @@ const PromotionModal: React.FC<PromotionModalProps> = ({ onClose, onViewChalleng
           >
             Talvez mais tarde
           </button>
+        </div>
         </div>
       </div>
     </div>
