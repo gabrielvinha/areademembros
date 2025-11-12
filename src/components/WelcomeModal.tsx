@@ -7,19 +7,9 @@ interface WelcomeModalProps {
 }
 
 const WelcomeModal: React.FC<WelcomeModalProps> = ({ userName, onComplete }) => {
-  const [showButton, setShowButton] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowButton(true);
-    }, 50000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
-      <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0B0B0F] rounded-2xl p-6 sm:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 overflow-y-auto">
+      <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0B0B0F] rounded-2xl p-6 sm:p-8 max-w-3xl w-full my-8">
         <div className="text-center mb-6">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
             Olá! {userName}
@@ -47,24 +37,14 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ userName, onComplete }) => 
           <VideoPlayer videoId="rrMRMJCczbI" />
         </div>
 
-        {showButton && (
-          <div className="flex justify-center">
-            <button
-              onClick={onComplete}
-              className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold text-lg px-8 py-4 rounded-lg transition-all duration-30 transform hover:scale-105"
-            >
-              Entendi e quero começar!
-            </button>
-          </div>
-        )}
-
-        {!showButton && (
-          <div className="flex justify-center">
-            <p className="text-gray-400 text-sm animate-pulse">
-              Aguarde para continuar...
-            </p>
-          </div>
-        )}
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={onComplete}
+            className="bg-[#FFD166] hover:bg-[#FFD166]/90 text-black font-bold text-lg px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 touch-manipulation"
+          >
+            Entendi e quero começar!
+          </button>
+        </div>
       </div>
     </div>
   );
