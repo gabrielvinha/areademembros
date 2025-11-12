@@ -7,11 +7,9 @@ import { Lock } from 'lucide-react';
 interface ModulesSectionProps {
   unlockedModules: Set<string>;
   onUnlock: (moduleId: string) => void;
-  daysRemaining?: number;
-  daysRemainingModule4?: number;
 }
 
-  const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock, daysRemaining = 0, daysRemainingModule4 = 0 }) => {
+  const ModulesSection: React.FC<ModulesSectionProps> = ({ unlockedModules, onUnlock }) => {
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
   const [showUnlockModal, setShowUnlockModal] = useState<string | null>(null);
@@ -29,21 +27,19 @@ interface ModulesSectionProps {
       id: 'module2',
       title: 'Módulo 2 - QUEBRA DO CICLO DA ESCASSEZ',
       image: 'https://i.postimg.cc/qqjJF46s/image.png',
-      isLocked: !unlockedModules.has('module2'),
-      password: 'md2025',
-      checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
+      isLocked: false,
     },
     {
       id: 'module3',
       title: 'Módulo 3 - O Poder Oculto do Silêncio Estratégico',
       image: 'https://i.ibb.co/VW8TBDw8/modulo-3-1.png',
-      checkoutUrl: 'https://pay.cakto.com.br/38ed933/?utm_source=areademembros/',
+      isLocked: false,
     },
     {
       id: 'module4',
       title: 'Módulo 4 - O Bloqueio Invisível: quando o coração se desconecta da fonte',
       image: 'https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=800&auto=format&fit=crop',
-      isLocked: !unlockedModules.has('module4'),
+      isLocked: false,
     },
   ];
 
@@ -202,7 +198,6 @@ interface ModulesSectionProps {
               isLocked={module.isLocked}
               comingSoon={module.comingSoon}
               onClick={() => handleModuleClick(module)}
-             daysRemaining={module.id === 'module2' ? daysRemaining : module.id === 'module4' ? daysRemainingModule4 : undefined}
             /> 
           ))}
         </div>
