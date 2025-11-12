@@ -14,6 +14,7 @@ import FADSection from './components/FADSection';
 import WelcomeModal from './components/WelcomeModal';
 import AdminPanel from './components/AdminPanel';
 import PromotionModal from './components/PromotionModal';
+import WhatsAppButton from './components/WhatsAppButton';
 import { AlertCircle } from 'lucide-react';
 
 
@@ -403,6 +404,7 @@ function App() {
         isUnlocked={prosperityUnlocked}
         onUnlock={unlockProsperity}
       />
+      <WhatsAppButton />
     </div>
   );
 }
