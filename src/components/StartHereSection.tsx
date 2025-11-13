@@ -116,15 +116,15 @@ const StartHereSection: React.FC = () => {
             <div
               key={product.id}
               onClick={() => handleProductClick(product)}
-              className="group relative bg-gradient-to-b from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden cursor-pointer transform transition-all duration-500 hover:scale-105 hover:border-[#FFD166]/50 hover:shadow-2xl hover:shadow-[#FFD166]/20"
+              className="group relative bg-gradient-to-b from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden cursor-pointer transform transition-all duration-500 hover:scale-105 hover:border-[#FFD166]/50 hover:shadow-2xl hover:shadow-[#FFD166]/20 flex flex-col"
             >
-              <div className="relative h-48 sm:h-56 overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden bg-black/50">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
 
                 {product.badge && (
                   <div className="absolute top-3 right-3">

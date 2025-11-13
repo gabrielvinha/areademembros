@@ -356,12 +356,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0B0B0F] text-white">
-      {showWelcomeModal && userProfile && (
-        <WelcomeModal
-          userName={userProfile.name || user?.email?.split('@')[0] || 'Membro'}
-          onComplete={handleWelcomeComplete}
-        />
-      )}
       {showPromotionModal && (
         <PromotionModal
           onClose={handlePromotionClose}
