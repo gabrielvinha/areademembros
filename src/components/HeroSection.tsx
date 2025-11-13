@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown, Home, BookOpen, Users, Gift, Sparkles, TrendingUp, Zap, Star } from 'lucide-react';
+import { ChevronDown, Home, BookOpen, Users, Gift, Sparkles, TrendingUp, Zap, Star, Play } from 'lucide-react';
 
 interface HeroSectionProps {
   onStartClick: () => void;
@@ -7,12 +7,12 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onStartClick }) => {
   const navigationItems = [
+    { id: 'start', label: 'Comece Aqui', icon: Play, scrollTo: () => document.getElementById('start-here-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'modules', label: 'Módulos', icon: BookOpen, scrollTo: () => document.getElementById('modules-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'fad', label: 'FAD', icon: Zap, scrollTo: () => document.getElementById('fad-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'community', label: 'Comunidade', icon: Users, scrollTo: () => document.getElementById('community-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'bonus', label: 'Bônus', icon: Gift, scrollTo: () => document.getElementById('bonus-section')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'mentorship', label: 'Mentoria', icon: Sparkles, scrollTo: () => document.getElementById('mentorship-section')?.scrollIntoView({ behavior: 'smooth' }) },
-    { id: 'recommended', label: 'Indicados', icon: Star, scrollTo: () => document.getElementById('recommended-section')?.scrollIntoView({ behavior: 'smooth' }) },
   ];
 
   return (
@@ -43,8 +43,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onStartClick }) => {
           Começar agora
         </button>
 
-        <div className="mt-8 sm:mt-10 max-w-2xl mx-auto">
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 px-4">
+        <div className="mt-8 sm:mt-10 max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3 px-4">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               return (

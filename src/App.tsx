@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import HeroSection from './components/HeroSection';
+import StartHereSection from './components/StartHereSection';
 import ModulesSection from './components/ModulesSection';
 import CommunitySection from './components/CommunitySection';
 import BonusSection from './components/BonusSection';
@@ -385,6 +386,7 @@ function App() {
         onToggle={() => setSidebarOpen(!sidebarOpen)}
       />
       <HeroSection onStartClick={scrollToModules} />
+      <StartHereSection />
       <ModulesSection
   unlockedModules={unlockedModules}
   onUnlock={unlockModule}
