@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Play, ExternalLink, Sparkles } from 'lucide-react';
+import { Play, ExternalLink, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import Modal from './Modal';
 import VideoPlayer from './VideoPlayer';
 
 const StartHereSection: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [showProducts, setShowProducts] = useState(false);
 
   const products = [
     {
@@ -102,16 +103,38 @@ const StartHereSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-6 sm:mb-8">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center mb-2">
-            Conteúdos para <span className="text-[#FFD166]">Aceleração de Resultados</span>
-          </h3>
-          <p className="text-gray-400 text-center text-sm sm:text-base">
-            Produtos complementares recomendados para potencializar sua transformação
-          </p>
+        <div className="mb-6 sm:mb-8 text-center">
+          <button
+            onClick={() => setShowProducts(!showProducts)}
+            className="group inline-flex items-center gap-3 bg-gradient-to-r from-[#FFD166] to-yellow-500 hover:from-yellow-500 hover:to-[#FFD166] text-black font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-[#FFD166]/30"
+          >
+            <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="text-sm sm:text-base md:text-lg">
+              VER CONTEÚDOS PARA ACELERAÇÃO DE RESULTADOS
+            </span>
+            {showProducts ? (
+              <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300" />
+            ) : (
+              <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-y-1" />
+            )}
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div
+          className={`transition-all duration-500 ease-in-out overflow-hidden ${
+            showProducts ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center mb-2">
+              Conteúdos para <span className="text-[#FFD166]">Aceleração de Resultados</span>
+            </h3>
+            <p className="text-gray-400 text-center text-sm sm:text-base">
+              Produtos complementares recomendados para potencializar sua transformação
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {products.map((product) => (
             <div
               key={product.id}
@@ -159,18 +182,19 @@ const StartHereSection: React.FC = () => {
               <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-[#FFD166]/50 transition-all duration-500 pointer-events-none" />
             </div>
           ))}
-        </div>
+          </div>
 
-        <div className="mt-8 sm:mt-12 text-center">
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 sm:p-6 max-w-3xl mx-auto">
-            <div className="flex items-start gap-3">
-              <span className="text-blue-400 text-xl sm:text-2xl">ℹ️</span>
-              <div className="text-left">
-                <h4 className="text-blue-400 font-bold text-sm sm:text-base mb-2">Informação Importante</h4>
-                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                  Estes são <strong className="text-white">produtos complementares vendidos separadamente</strong> e não estão incluídos na sua assinatura atual.
-                  Cada um foi cuidadosamente selecionado para acelerar seus resultados e potencializar sua transformação.
-                </p>
+          <div className="mt-8 sm:mt-12 text-center">
+            <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 sm:p-6 max-w-3xl mx-auto">
+              <div className="flex items-start gap-3">
+                <span className="text-blue-400 text-xl sm:text-2xl">ℹ️</span>
+                <div className="text-left">
+                  <h4 className="text-blue-400 font-bold text-sm sm:text-base mb-2">Informação Importante</h4>
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                    Estes são <strong className="text-white">produtos complementares vendidos separadamente</strong> e não estão incluídos na sua assinatura atual.
+                    Cada um foi cuidadosamente selecionado para acelerar seus resultados e potencializar sua transformação.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
