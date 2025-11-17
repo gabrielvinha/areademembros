@@ -99,7 +99,7 @@ const StartHereSection: React.FC = () => {
 
         <div className="max-w-4xl mx-auto mb-12 sm:mb-16">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-[#FFD166]/20">
-            <VideoPlayer videoId="v3pKdjGMJ4k" />
+            <VideoPlayer videoId="iAR6FpnhY-o" />
           </div>
         </div>
 
