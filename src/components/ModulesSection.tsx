@@ -18,6 +18,12 @@ interface ModulesSectionProps {
 
   const modules = [
     {
+      id: 'module0',
+      title: 'Módulo 0 - Os 5 Estágios do Coração',
+      image: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&auto=format&fit=crop',
+      isLocked: false,
+    },
+    {
       id: 'module1',
       title: 'Módulo 1 - O CÓDIGO OCULTO DO CORAÇÃO',
       image: 'https://i.postimg.cc/26YC8V4d/image.png',
@@ -44,6 +50,32 @@ interface ModulesSectionProps {
   ];
 
   const lessonsByModule: { [key: string]: any[] } = {
+    module0: [
+      {
+        id: 'module0_lesson1',
+        title: 'Aula 1 - Os 5 Estágios do Coração',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop',
+        videoId: '6tgAhZ2hWVo'
+      },
+      {
+        id: 'module0_lesson2',
+        title: 'Aula 2 - Atravessando os Estágios',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop',
+        videoId: 'BzN-IRAR6gU'
+      },
+      {
+        id: 'module0_lesson3',
+        title: 'Aula 3 - Ativando a Frequência de Abundância',
+        image: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&auto=format&fit=crop',
+        videoId: 'petOVoXief8'
+      },
+      {
+        id: 'module0_lesson4',
+        title: 'Aula 4 - Prosperidade e Vitalidade',
+        image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76d7?w=800&auto=format&fit=crop',
+        videoId: 'SlmYM9qgJEo'
+      }
+    ],
     module1: [
       {
         id: 'lesson1',
