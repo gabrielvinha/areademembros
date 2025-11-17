@@ -72,7 +72,7 @@ interface ModulesSectionProps {
       {
         id: 'module0_lesson4',
         title: 'Aula 4 - Prosperidade e Vitalidade',
-        image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76d7?w=800&auto=format&fit=crop',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWX7R_aevx6ooPwx0icXCDR9q8if9dAzb4aw&s',
         videoId: 'SlmYM9qgJEo'
       }
     ],
