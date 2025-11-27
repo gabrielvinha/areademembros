@@ -53,27 +53,39 @@ interface ModulesSectionProps {
     module0: [
       {
         id: 'module0_lesson1',
-        title: 'Aula 1 - Os 5 Estágios do Coração',
+        title: 'Aula 1: Segredo Compartilhado',
         image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop',
         videoId: '6tgAhZ2hWVo'
       },
       {
         id: 'module0_lesson2',
-        title: 'Aula 2 - Atravessando os Estágios',
+        title: 'Aula 2: O poder da radiância do coração',
         image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop',
         videoId: 'BzN-IRAR6gU'
       },
       {
         id: 'module0_lesson3',
-        title: 'Aula 3 - Ativando a Frequência de Abundância',
+        title: 'Aula 3: As 5 realidades do Coração',
         image: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&auto=format&fit=crop',
         videoId: 'petOVoXief8'
       },
       {
         id: 'module0_lesson4',
-        title: 'Aula 4 - Prosperidade e Vitalidade',
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWX7R_aevx6ooPwx0icXCDR9q8if9dAzb4aw&s',
+        title: 'Aula 4: O coração na Escuridão: a incoerência',
+        image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76d7?w=800&auto=format&fit=crop',
         videoId: 'SlmYM9qgJEo'
+      },
+      {
+        id: 'module0_lesson5',
+        title: 'Aula 5: Coerência Cardíaca',
+        image: 'https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?w=800&auto=format&fit=crop',
+        videoId: 'SEvsTMLV3oo'
+      },
+      {
+        id: 'module0_lesson6',
+        title: 'Aula 6: Campos Eletromagnético do Coração',
+        image: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&auto=format&fit=crop',
+        videoId: 'SmIzrUy9lNE'
       }
     ],
     module1: [
