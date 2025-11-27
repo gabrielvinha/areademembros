@@ -72,7 +72,7 @@ interface ModulesSectionProps {
       {
         id: 'module0_lesson4',
         title: 'Aula 4: O coração na Escuridão: a incoerência',
-        image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76d7?w=800&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1704929941234-2d970e9e5ab9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         videoId: 'SlmYM9qgJEo'
       },
       {
