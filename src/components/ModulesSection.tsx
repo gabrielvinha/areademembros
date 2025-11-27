@@ -78,7 +78,7 @@ interface ModulesSectionProps {
       {
         id: 'module0_lesson5',
         title: 'Aula 5: Coerência Cardíaca',
-        image: 'https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?w=800&auto=format&fit=crop',
+        image: 'https://www.medicus.pt/documentos/image/20210107.jpg',
         videoId: 'SEvsTMLV3oo'
       },
       {
